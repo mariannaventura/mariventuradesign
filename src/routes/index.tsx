@@ -14,7 +14,28 @@ function Index() {
   const sy = useSpring(my, { stiffness: 60, damping: 20 });
 
   const background = useTransform([sx, sy], ([x, y]) => {
-    return `radial-gradient(circle at ${x}% ${y}%, oklch(0.78 0.19 25) 0%, oklch(0.62 0.22 340) 35%, oklch(0.4 0.18 280) 70%, oklch(0.2 0.08 260) 100%)`;
+    // Degradê de forma livre: camadas cônicas que misturam com o cursor.
+    // Cores usadas (sinalizadas para substituição futura):
+    // 1. Pêssego quente — oklch(0.78 0.19 25)
+    // 2. Rosa choque — oklch(0.62 0.22 340)
+    // 3. Roxo profundo — oklch(0.4 0.18 280)
+    // 4. Azul meia-noite — oklch(0.2 0.08 260)
+    return `
+      conic-gradient(from ${x * 3.6}deg at ${x}% ${y}%,
+        oklch(0.78 0.19 25) 0deg,
+        oklch(0.62 0.22 340) 60deg,
+        oklch(0.4 0.18 280) 180deg,
+        oklch(0.2 0.08 260) 300deg,
+        oklch(0.78 0.19 25) 360deg
+      ),
+      conic-gradient(from ${180 - y * 1.8}deg at ${100 - x}% ${100 - y}%,
+        oklch(0.2 0.08 260) 0deg,
+        oklch(0.4 0.18 280) 90deg,
+        oklch(0.62 0.22 340) 210deg,
+        oklch(0.78 0.19 25) 330deg,
+        oklch(0.2 0.08 260) 360deg
+      )
+    `;
   });
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
