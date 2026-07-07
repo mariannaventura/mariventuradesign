@@ -24,44 +24,22 @@ function ContatoPage() {
       <Stagger className="mt-10 grid gap-4">
         <StaggerItem>
           <a
-            href="mailto:seuemail@exemplo.com"
+            href="mailto:mariannaventura08@hotmail.com"
             className="block p-6 rounded-2xl border border-border bg-card hover:border-accent hover:shadow-md transition-all"
           >
             <p className="text-sm text-muted-foreground">Email</p>
-            <p className="mt-1 font-display text-xl">seuemail@exemplo.com</p>
+            <p className="mt-1 font-display text-xl">mariannaventura08@hotmail.com</p>
           </a>
         </StaggerItem>
         <StaggerItem>
           <a
-            href="https://instagram.com/seuperfil"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block p-6 rounded-2xl border border-border bg-card hover:border-accent hover:shadow-md transition-all"
-          >
-            <p className="text-sm text-muted-foreground">Instagram</p>
-            <p className="mt-1 font-display text-xl">@seuperfil</p>
-          </a>
-        </StaggerItem>
-        <StaggerItem>
-          <a
-            href="https://linkedin.com/in/seuperfil"
+            href="https://www.linkedin.com/in/mariannaventura/"
             target="_blank"
             rel="noopener noreferrer"
             className="block p-6 rounded-2xl border border-border bg-card hover:border-accent hover:shadow-md transition-all"
           >
             <p className="text-sm text-muted-foreground">LinkedIn</p>
-            <p className="mt-1 font-display text-xl">/in/seuperfil</p>
-          </a>
-        </StaggerItem>
-        <StaggerItem>
-          <a
-            href="https://wa.me/5500000000000"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block p-6 rounded-2xl border border-border bg-card hover:border-accent hover:shadow-md transition-all"
-          >
-            <p className="text-sm text-muted-foreground">WhatsApp</p>
-            <p className="mt-1 font-display text-xl">+55 (00) 00000-0000</p>
+            <p className="mt-1 font-display text-xl">/in/mariannaventura</p>
           </a>
         </StaggerItem>
       </Stagger>
