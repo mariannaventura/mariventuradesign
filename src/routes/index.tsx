@@ -13,7 +13,7 @@ function Index() {
   const sx = useSpring(mx, { stiffness: 60, damping: 20 });
   const sy = useSpring(my, { stiffness: 60, damping: 20 });
 
-  const background = useTransform([sx, sy], ([x, y]) => {
+  const background = useTransform<number, string>([sx, sy], ([x, y]) => {
     // Degradê de forma livre: camadas cônicas que misturam com o cursor.
     // Cores usadas (sinalizadas para substituição futura):
     // 1. Pêssego quente — oklch(0.78 0.19 25)
