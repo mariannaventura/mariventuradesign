@@ -47,7 +47,7 @@ function Index() {
   return (
     <motion.section
       onMouseMove={handleMove}
-      style={{ background }}
+      style={{ background, backgroundBlendMode: "overlay" }}
       className="relative -mt-16 min-h-screen flex flex-col items-center justify-center overflow-hidden cursor-crosshair"
     >
       {/* Logo placeholder — substituir por PNG */}
