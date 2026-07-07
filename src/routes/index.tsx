@@ -1,24 +1,66 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Link } from "@tanstack/react-router";
+import { FadeIn } from "../components/motion-primitives";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const mx = useMotionValue(50);
+  const my = useMotionValue(50);
+  const sx = useSpring(mx, { stiffness: 60, damping: 20 });
+  const sy = useSpring(my, { stiffness: 60, damping: 20 });
+
+  const background = useTransform([sx, sy], ([x, y]) => {
+    return `radial-gradient(circle at ${x}% ${y}%, oklch(0.78 0.19 25) 0%, oklch(0.62 0.22 340) 35%, oklch(0.4 0.18 280) 70%, oklch(0.2 0.08 260) 100%)`;
+  });
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mx.set(((e.clientX - rect.left) / rect.width) * 100);
+    my.set(((e.clientY - rect.top) / rect.height) * 100);
+  };
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+    <motion.section
+      onMouseMove={handleMove}
+      style={{ background }}
+      className="relative -mt-16 min-h-screen flex flex-col items-center justify-center overflow-hidden cursor-crosshair"
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+      {/* Logo placeholder — substituir por PNG */}
+      <FadeIn delay={0.2}>
+        <div className="w-64 h-64 md:w-80 md:h-80 flex items-center justify-center rounded-3xl border-2 border-dashed border-white/40 bg-white/5 backdrop-blur-sm text-white/80 text-center text-sm px-6">
+          [ Espaço para logo PNG ]
+          <br />
+          <span className="text-xs opacity-70">(fornecer futuramente)</span>
+        </div>
+      </FadeIn>
+
+      <FadeIn delay={0.5} className="mt-10 text-center px-6">
+        <h1 className="text-white text-4xl md:text-6xl font-display font-semibold max-w-3xl">
+          Design gráfico com propósito e sensibilidade
+        </h1>
+        <p className="mt-4 text-white/80 max-w-xl mx-auto">
+          Mova o cursor para explorar. Um convite visual para o meu trabalho.
+        </p>
+      </FadeIn>
+
+      <FadeIn delay={0.8} className="mt-10 flex gap-4">
+        <Link
+          to="/trabalhos"
+          className="px-6 py-3 rounded-full bg-white text-primary font-medium hover:bg-white/90 transition-colors"
+        >
+          Ver trabalhos
+        </Link>
+        <Link
+          to="/contato"
+          className="px-6 py-3 rounded-full border border-white/60 text-white hover:bg-white/10 transition-colors"
+        >
+          Entrar em contato
+        </Link>
+      </FadeIn>
+    </motion.section>
   );
 }
