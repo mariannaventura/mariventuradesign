@@ -76,7 +76,7 @@ function TrabalhoDetalhe() {
           {trabalho.titulo}
         </h1>
         <div className="mt-4 flex flex-wrap gap-2">
-          {trabalho.tags.map((tag) => (
+          {trabalho.tags.map((tag: string) => (
             <span
               key={tag}
               className="text-xs px-3 py-1 rounded-full bg-muted text-muted-foreground"
