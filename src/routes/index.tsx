@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { FadeIn } from "../components/motion-primitives";
+import logoAsset from "@/assets/logo-mari.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -52,13 +53,13 @@ function Index() {
       style={{ background, backgroundBlendMode: "overlay" }}
       className="relative -mt-16 min-h-screen flex flex-col items-center justify-center overflow-hidden cursor-crosshair"
     >
-      {/* Logo placeholder — substituir por PNG */}
+      {/* Logo Mari Ventura */}
       <FadeIn delay={0.2}>
-        <div className="w-64 h-64 md:w-80 md:h-80 flex items-center justify-center rounded-3xl border-2 border-dashed border-white/40 bg-white/5 backdrop-blur-sm text-white/80 text-center text-sm px-6">
-          [ Espaço para logo PNG ]
-          <br />
-          <span className="text-xs opacity-70">(fornecer futuramente)</span>
-        </div>
+        <img
+          src={logoAsset.url}
+          alt="Logo Mari Ventura"
+          className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl"
+        />
       </FadeIn>
 
       <FadeIn delay={0.5} className="mt-10 text-center px-6">
