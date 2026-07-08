@@ -15,28 +15,30 @@ function Index() {
   const sy = useSpring(my, { stiffness: 60, damping: 20 });
 
   const background = useTransform<number, string>([sx, sy], ([x, y]) => {
-    // Degradê de forma livre — cores extraídas da Paleta 1 (Manual de Marca Mari Ventura):
-    // 1. Roxo — #8B6FE8
-    // 2. Azul-violeta — #6B8FE8
-    // 3. Azul-ciano — #6FC5E0
-    // 4. Verde-água — #7FD9C4
-    // 5. Verde-limão — #C8E88A
+    // Degradê de forma livre — cores escurecidas, roxo predominante:
+    // 1. Roxo escuro — #5B3FB8
+    // 2. Azul-violeta escuro — #3A5FB8
+    // 3. Azul-ciano escuro — #3A8AA3
+    // 4. Verde-água escuro — #3A9A8A
+    // 5. Verde-limão escuro — #7A9A4A
     return `
       conic-gradient(from ${x * 3.6}deg at ${x}% ${y}%,
-        #8B6FE8 0deg,
-        #6B8FE8 80deg,
-        #6FC5E0 160deg,
-        #7FD9C4 240deg,
-        #C8E88A 320deg,
-        #8B6FE8 360deg
+        #5B3FB8 0deg,
+        #5B3FB8 80deg,
+        #3A5FB8 120deg,
+        #3A8AA3 160deg,
+        #3A9A8A 200deg,
+        #7A9A4A 260deg,
+        #5B3FB8 320deg,
+        #5B3FB8 360deg
       ),
       conic-gradient(from ${180 - y * 1.8}deg at ${100 - x}% ${100 - y}%,
-        #C8E88A 0deg,
-        #7FD9C4 90deg,
-        #6FC5E0 180deg,
-        #6B8FE8 260deg,
-        #8B6FE8 340deg,
-        #C8E88A 360deg
+        #7A9A4A 0deg,
+        #3A9A8A 60deg,
+        #3A8AA3 110deg,
+        #3A5FB8 150deg,
+        #5B3FB8 200deg,
+        #5B3FB8 360deg
       )
     `;
   });
