@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { FadeIn } from "../components/motion-primitives";
+import logoAsset from "@/assets/logo-mari.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
