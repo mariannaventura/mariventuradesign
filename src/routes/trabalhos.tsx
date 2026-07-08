@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn, Stagger, StaggerItem } from "../components/motion-primitives";
@@ -95,25 +95,33 @@ function TrabalhosPage() {
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <StaggerItem>
-                <article className="group">
-                  <div className="image-placeholder aspect-[4/5]">
-                    [ Imagem do trabalho — {t.titulo} ]
-                  </div>
-                  <div className="mt-4">
-                    <h3 className="font-display text-lg font-semibold">{t.titulo}</h3>
-                    <p className="text-sm text-muted-foreground">{t.cliente}</p>
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {t.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                <Link
+                  to="/trabalhos/$id"
+                  params={{ id: String(t.id) }}
+                  className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
+                >
+                  <article>
+                    <div className="image-placeholder aspect-[4/5] overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+                      [ Imagem do trabalho — {t.titulo} ]
                     </div>
-                  </div>
-                </article>
+                    <div className="mt-4">
+                      <h3 className="font-display text-lg font-semibold group-hover:text-accent transition-colors">
+                        {t.titulo}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{t.cliente}</p>
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {t.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                </Link>
               </StaggerItem>
             </motion.div>
           ))}

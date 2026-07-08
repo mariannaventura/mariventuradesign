@@ -13,6 +13,7 @@ import { Route as TrabalhosRouteImport } from './routes/trabalhos'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TrabalhosIdRouteImport } from './routes/trabalhos.$id'
 
 const TrabalhosRoute = TrabalhosRouteImport.update({
   id: '/trabalhos',
@@ -34,39 +35,47 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrabalhosIdRoute = TrabalhosIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => TrabalhosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/sobre': typeof SobreRoute
-  '/trabalhos': typeof TrabalhosRoute
+  '/trabalhos': typeof TrabalhosRouteWithChildren
+  '/trabalhos/$id': typeof TrabalhosIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/sobre': typeof SobreRoute
-  '/trabalhos': typeof TrabalhosRoute
+  '/trabalhos': typeof TrabalhosRouteWithChildren
+  '/trabalhos/$id': typeof TrabalhosIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/sobre': typeof SobreRoute
-  '/trabalhos': typeof TrabalhosRoute
+  '/trabalhos': typeof TrabalhosRouteWithChildren
+  '/trabalhos/$id': typeof TrabalhosIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contato' | '/sobre' | '/trabalhos'
+  fullPaths: '/' | '/contato' | '/sobre' | '/trabalhos' | '/trabalhos/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contato' | '/sobre' | '/trabalhos'
-  id: '__root__' | '/' | '/contato' | '/sobre' | '/trabalhos'
+  to: '/' | '/contato' | '/sobre' | '/trabalhos' | '/trabalhos/$id'
+  id: '__root__' | '/' | '/contato' | '/sobre' | '/trabalhos' | '/trabalhos/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
   SobreRoute: typeof SobreRoute
-  TrabalhosRoute: typeof TrabalhosRoute
+  TrabalhosRoute: typeof TrabalhosRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -99,14 +108,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trabalhos/$id': {
+      id: '/trabalhos/$id'
+      path: '/$id'
+      fullPath: '/trabalhos/$id'
+      preLoaderRoute: typeof TrabalhosIdRouteImport
+      parentRoute: typeof TrabalhosRoute
+    }
   }
 }
+
+interface TrabalhosRouteChildren {
+  TrabalhosIdRoute: typeof TrabalhosIdRoute
+}
+
+const TrabalhosRouteChildren: TrabalhosRouteChildren = {
+  TrabalhosIdRoute: TrabalhosIdRoute,
+}
+
+const TrabalhosRouteWithChildren = TrabalhosRoute._addFileChildren(
+  TrabalhosRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
   SobreRoute: SobreRoute,
-  TrabalhosRoute: TrabalhosRoute,
+  TrabalhosRoute: TrabalhosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
