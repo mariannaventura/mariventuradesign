@@ -15,30 +15,22 @@ function Index() {
   const sy = useSpring(my, { stiffness: 60, damping: 20 });
 
   const background = useTransform<number, string>([sx, sy], ([x, y]) => {
-    // Degradê de forma livre — cores escurecidas, roxo predominante:
-    // 1. Roxo escuro — #5B3FB8
-    // 2. Azul-violeta escuro — #3A5FB8
-    // 3. Azul-ciano escuro — #3A8AA3
-    // 4. Verde-água escuro — #3A9A8A
-    // 5. Verde-limão escuro — #7A9A4A
+    // Degradê livre — paleta anexada:
+    // Roxo #590066 · Verde #346600 · Marrom #663500
     return `
       conic-gradient(from ${x * 3.6}deg at ${x}% ${y}%,
-        #5B3FB8 0deg,
-        #5B3FB8 80deg,
-        #3A5FB8 120deg,
-        #3A8AA3 160deg,
-        #3A9A8A 200deg,
-        #7A9A4A 260deg,
-        #5B3FB8 320deg,
-        #5B3FB8 360deg
+        #590066 0deg,
+        #590066 90deg,
+        #346600 170deg,
+        #663500 250deg,
+        #590066 340deg,
+        #590066 360deg
       ),
       conic-gradient(from ${180 - y * 1.8}deg at ${100 - x}% ${100 - y}%,
-        #7A9A4A 0deg,
-        #3A9A8A 60deg,
-        #3A8AA3 110deg,
-        #3A5FB8 150deg,
-        #5B3FB8 200deg,
-        #5B3FB8 360deg
+        #663500 0deg,
+        #346600 90deg,
+        #590066 180deg,
+        #590066 360deg
       )
     `;
   });
@@ -76,13 +68,15 @@ function Index() {
       <FadeIn delay={0.8} className="mt-10 flex gap-4">
         <Link
           to="/trabalhos"
-          className="px-6 py-3 rounded-full bg-white text-primary font-medium hover:bg-white/90 transition-colors"
+          className="px-6 py-3 rounded-full font-medium transition-colors"
+          style={{ backgroundColor: "#73C7E6", color: "#0a0a0a" }}
         >
           Ver trabalhos
         </Link>
         <Link
           to="/contato"
-          className="px-6 py-3 rounded-full border border-white/60 text-white hover:bg-white/10 transition-colors"
+          className="px-6 py-3 rounded-full border font-medium transition-colors hover:bg-white/10"
+          style={{ borderColor: "#73C7E6", color: "#73C7E6" }}
         >
           Entrar em contato
         </Link>

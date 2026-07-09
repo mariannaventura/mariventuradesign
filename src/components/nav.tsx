@@ -4,12 +4,13 @@ export function Nav() {
   const links = [
     { to: "/", label: "Início" },
     { to: "/trabalhos", label: "Trabalhos" },
+    { to: "/servicos", label: "Serviços" },
     { to: "/sobre", label: "Sobre" },
     { to: "/contato", label: "Contato" },
   ] as const;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/60 border-b border-border/50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <Link to="/" className="font-display text-lg font-semibold tracking-tight">
           Portfólio
