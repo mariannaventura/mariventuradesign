@@ -68,13 +68,15 @@ function Index() {
       <FadeIn delay={0.8} className="mt-10 flex gap-4">
         <Link
           to="/trabalhos"
-          className="px-6 py-3 rounded-full bg-white text-primary font-medium hover:bg-white/90 transition-colors"
+          className="px-6 py-3 rounded-full font-medium transition-colors"
+          style={{ backgroundColor: "#73C7E6", color: "#0a0a0a" }}
         >
           Ver trabalhos
         </Link>
         <Link
           to="/contato"
-          className="px-6 py-3 rounded-full border border-white/60 text-white hover:bg-white/10 transition-colors"
+          className="px-6 py-3 rounded-full border font-medium transition-colors hover:bg-white/10"
+          style={{ borderColor: "#73C7E6", color: "#73C7E6" }}
         >
           Entrar em contato
         </Link>
