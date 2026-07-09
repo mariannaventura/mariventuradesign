@@ -45,7 +45,7 @@ function Index() {
     <motion.section
       onMouseMove={handleMove}
       style={{ background, backgroundBlendMode: "overlay" }}
-      className="relative -mt-16 min-h-screen flex flex-col items-center justify-center overflow-hidden cursor-crosshair"
+      className="relative -mt-16 pt-24 min-h-screen flex flex-col items-center justify-center overflow-hidden cursor-crosshair"
     >
       {/* Logo Mari Ventura */}
       <FadeIn delay={0.2}>
