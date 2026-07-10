@@ -43,13 +43,12 @@ type Trabalho = {
 // Mantém a mesma lista da página /trabalhos.
 // Futuramente: mover para um módulo compartilhado ou banco de dados.
 const TRABALHOS: Trabalho[] = [
-  { id: 1, titulo: "Identidade Café Aurora", cliente: "Café Aurora", tags: ["Branding", "Identidade Visual"] },
-  { id: 2, titulo: "Cartaz Festival Solar", cliente: "Festival Solar", tags: ["Cartaz", "Ilustração"] },
-  { id: 3, titulo: "Editorial Revista Norte", cliente: "Revista Norte", tags: ["Editorial", "Tipografia"] },
-  { id: 4, titulo: "Embalagem Doce Casa", cliente: "Doce Casa", tags: ["Embalagem", "Branding"] },
+  { id: 1, titulo: "Festival Afrontosas", cliente: "Coletivo Afrontosas", tags: ["Branding", "Identidade Visual", "Digital"] },
+  { id: 2, titulo: "Cartaz Festival Solar", cliente: "Festival Solar", tags: ["Cartaz"] },
+  { id: 3, titulo: "Editorial Revista Norte", cliente: "Revista Norte", tags: ["Editorial"] },
+  { id: 4, titulo: "Identidade Doce Casa", cliente: "Doce Casa", tags: ["Branding"] },
   { id: 5, titulo: "Sistema UI Fluxo", cliente: "Fluxo App", tags: ["UI/UX", "Digital"] },
-  { id: 6, titulo: "Cartaz Cinema Clube", cliente: "Cinema Clube", tags: ["Cartaz", "Tipografia"] },
-  { id: 7, titulo: "Ilustração Livro Infantil", cliente: "Editora Lua", tags: ["Ilustração", "Editorial"] },
+  { id: 6, titulo: "Cartaz Cinema Clube", cliente: "Cinema Clube", tags: ["Cartaz"] },
   { id: 8, titulo: "Redesign Marca Verde", cliente: "Verde Studio", tags: ["Branding", "Identidade Visual"] },
 ];
 
