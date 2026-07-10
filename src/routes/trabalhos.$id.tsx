@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem } from "../components/motion-primitives";
+import festivalAsset from "@/assets/festival-afrontosas.png.asset.json";
 
 export const Route = createFileRoute("/trabalhos/$id")({
   head: ({ params }) => ({
