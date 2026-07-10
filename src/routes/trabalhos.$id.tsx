@@ -57,7 +57,7 @@ function TrabalhoDetalhe() {
   const { trabalho } = Route.useLoaderData();
 
   return (
-    <article className="max-w-5xl mx-auto px-6 py-16">
+    <article className="max-w-5xl mx-auto px-6 pt-32 pb-16">
       <FadeIn>
         <Link
           to="/trabalhos"
@@ -88,9 +88,17 @@ function TrabalhoDetalhe() {
       </FadeIn>
 
       <FadeIn delay={0.2} className="mt-10">
-        <div className="image-placeholder aspect-[16/9]">
-          [ Imagem principal (capa) — {trabalho.titulo} ]
-        </div>
+        {trabalho.id === 1 ? (
+          <img
+            src={festivalAsset.url}
+            alt={`Capa — ${trabalho.titulo}`}
+            className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+          />
+        ) : (
+          <div className="image-placeholder aspect-[16/9]">
+            [ Imagem principal (capa) — {trabalho.titulo} ]
+          </div>
+        )}
       </FadeIn>
 
       <Stagger className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
