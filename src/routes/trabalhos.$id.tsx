@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem } from "../components/motion-primitives";
+import festivalAsset from "@/assets/festival-afrontosas.png.asset.json";
 
 export const Route = createFileRoute("/trabalhos/$id")({
   head: ({ params }) => ({
@@ -43,13 +44,12 @@ type Trabalho = {
 // Mantém a mesma lista da página /trabalhos.
 // Futuramente: mover para um módulo compartilhado ou banco de dados.
 const TRABALHOS: Trabalho[] = [
-  { id: 1, titulo: "Identidade Café Aurora", cliente: "Café Aurora", tags: ["Branding", "Identidade Visual"] },
-  { id: 2, titulo: "Cartaz Festival Solar", cliente: "Festival Solar", tags: ["Cartaz", "Ilustração"] },
-  { id: 3, titulo: "Editorial Revista Norte", cliente: "Revista Norte", tags: ["Editorial", "Tipografia"] },
-  { id: 4, titulo: "Embalagem Doce Casa", cliente: "Doce Casa", tags: ["Embalagem", "Branding"] },
+  { id: 1, titulo: "Festival Afrontosas", cliente: "Coletivo Afrontosas", tags: ["Branding", "Identidade Visual", "Digital"] },
+  { id: 2, titulo: "Cartaz Festival Solar", cliente: "Festival Solar", tags: ["Cartaz"] },
+  { id: 3, titulo: "Editorial Revista Norte", cliente: "Revista Norte", tags: ["Editorial"] },
+  { id: 4, titulo: "Identidade Doce Casa", cliente: "Doce Casa", tags: ["Branding"] },
   { id: 5, titulo: "Sistema UI Fluxo", cliente: "Fluxo App", tags: ["UI/UX", "Digital"] },
-  { id: 6, titulo: "Cartaz Cinema Clube", cliente: "Cinema Clube", tags: ["Cartaz", "Tipografia"] },
-  { id: 7, titulo: "Ilustração Livro Infantil", cliente: "Editora Lua", tags: ["Ilustração", "Editorial"] },
+  { id: 6, titulo: "Cartaz Cinema Clube", cliente: "Cinema Clube", tags: ["Cartaz"] },
   { id: 8, titulo: "Redesign Marca Verde", cliente: "Verde Studio", tags: ["Branding", "Identidade Visual"] },
 ];
 
@@ -57,7 +57,7 @@ function TrabalhoDetalhe() {
   const { trabalho } = Route.useLoaderData();
 
   return (
-    <article className="max-w-5xl mx-auto px-6 py-16">
+    <article className="max-w-5xl mx-auto px-6 pt-32 pb-16">
       <FadeIn>
         <Link
           to="/trabalhos"
@@ -88,9 +88,17 @@ function TrabalhoDetalhe() {
       </FadeIn>
 
       <FadeIn delay={0.2} className="mt-10">
-        <div className="image-placeholder aspect-[16/9]">
-          [ Imagem principal (capa) — {trabalho.titulo} ]
-        </div>
+        {trabalho.id === 1 ? (
+          <img
+            src={festivalAsset.url}
+            alt={`Capa — ${trabalho.titulo}`}
+            className="w-full aspect-[16/9] object-cover rounded-lg shadow-lg"
+          />
+        ) : (
+          <div className="image-placeholder aspect-[16/9]">
+            [ Imagem principal (capa) — {trabalho.titulo} ]
+          </div>
+        )}
       </FadeIn>
 
       <Stagger className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">

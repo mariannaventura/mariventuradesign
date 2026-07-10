@@ -7,7 +7,7 @@ export const Route = createFileRoute("/trabalhos")({
   head: () => ({
     meta: [
       { title: "Trabalhos — Portfólio" },
-      { name: "description", content: "Seleção de projetos de design gráfico, branding e ilustração." },
+      { name: "description", content: "Seleção de projetos de design gráfico e branding." },
     ],
   }),
   component: TrabalhosPage,
@@ -21,13 +21,12 @@ type Trabalho = {
 };
 
 const TRABALHOS: Trabalho[] = [
-  { id: 1, titulo: "Identidade Café Aurora", cliente: "Café Aurora", tags: ["Branding", "Identidade Visual"] },
-  { id: 2, titulo: "Cartaz Festival Solar", cliente: "Festival Solar", tags: ["Cartaz", "Ilustração"] },
-  { id: 3, titulo: "Editorial Revista Norte", cliente: "Revista Norte", tags: ["Editorial", "Tipografia"] },
-  { id: 4, titulo: "Embalagem Doce Casa", cliente: "Doce Casa", tags: ["Embalagem", "Branding"] },
+  { id: 1, titulo: "Festival Afrontosas", cliente: "Coletivo Afrontosas", tags: ["Branding", "Identidade Visual", "Digital"] },
+  { id: 2, titulo: "Cartaz Festival Solar", cliente: "Festival Solar", tags: ["Cartaz"] },
+  { id: 3, titulo: "Editorial Revista Norte", cliente: "Revista Norte", tags: ["Editorial"] },
+  { id: 4, titulo: "Identidade Doce Casa", cliente: "Doce Casa", tags: ["Branding"] },
   { id: 5, titulo: "Sistema UI Fluxo", cliente: "Fluxo App", tags: ["UI/UX", "Digital"] },
-  { id: 6, titulo: "Cartaz Cinema Clube", cliente: "Cinema Clube", tags: ["Cartaz", "Tipografia"] },
-  { id: 7, titulo: "Ilustração Livro Infantil", cliente: "Editora Lua", tags: ["Ilustração", "Editorial"] },
+  { id: 6, titulo: "Cartaz Cinema Clube", cliente: "Cinema Clube", tags: ["Cartaz"] },
   { id: 8, titulo: "Redesign Marca Verde", cliente: "Verde Studio", tags: ["Branding", "Identidade Visual"] },
 ];
 
@@ -48,7 +47,7 @@ function TrabalhosPage() {
   );
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-20">
+    <section className="max-w-6xl mx-auto px-6 pt-32 pb-20">
       <FadeIn>
         <h1 className="text-4xl md:text-5xl font-display font-semibold">Trabalhos</h1>
         <p className="mt-3 text-muted-foreground max-w-xl">
