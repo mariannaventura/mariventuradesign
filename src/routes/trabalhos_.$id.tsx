@@ -45,7 +45,7 @@ type Trabalho = {
 // Futuramente: mover para um módulo compartilhado ou banco de dados.
 const TRABALHOS: Trabalho[] = [
   { id: 1, titulo: "Festival Afrontosas", cliente: "Coletivo Afrontosas", tags: ["Branding", "Identidade Visual", "Digital"] },
-  { id: 2, titulo: "Cartaz Festival Solar", cliente: "Festival Solar", tags: ["Cartaz"] },
+  { id: 2, titulo: "Identidade Pessoal Letycia Rangel", cliente: "Letycia Rangel", tags: ["Branding", "Identidade Visual"] },
   { id: 3, titulo: "Editorial Revista Norte", cliente: "Revista Norte", tags: ["Editorial"] },
   { id: 4, titulo: "Identidade Doce Casa", cliente: "Doce Casa", tags: ["Branding"] },
   { id: 5, titulo: "Sistema UI Fluxo", cliente: "Fluxo App", tags: ["UI/UX", "Digital"] },
