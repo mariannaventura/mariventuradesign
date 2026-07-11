@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem } from "../components/motion-primitives";
 import festivalAsset from "@/assets/festival-afrontosas.png.asset.json";
 
-export const Route = createFileRoute("/trabalhos/$id")({
+export const Route = createFileRoute("/trabalhos_/$id")({
   head: ({ params }) => ({
     meta: [
       { title: `Trabalho ${params.id} — Portfólio` },
