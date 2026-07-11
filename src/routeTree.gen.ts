@@ -14,7 +14,7 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TrabalhosIdRouteImport } from './routes/trabalhos.$id'
+import { Route as TrabalhosIdRouteImport } from './routes/trabalhos_.$id'
 
 const TrabalhosRoute = TrabalhosRouteImport.update({
   id: '/trabalhos',
@@ -42,9 +42,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const TrabalhosIdRoute = TrabalhosIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => TrabalhosRoute,
+  id: '/trabalhos_/$id',
+  path: '/trabalhos/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -52,7 +52,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/trabalhos': typeof TrabalhosRouteWithChildren
+  '/trabalhos': typeof TrabalhosRoute
   '/trabalhos/$id': typeof TrabalhosIdRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +60,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/trabalhos': typeof TrabalhosRouteWithChildren
+  '/trabalhos': typeof TrabalhosRoute
   '/trabalhos/$id': typeof TrabalhosIdRoute
 }
 export interface FileRoutesById {
@@ -69,8 +69,8 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/trabalhos': typeof TrabalhosRouteWithChildren
-  '/trabalhos/$id': typeof TrabalhosIdRoute
+  '/trabalhos': typeof TrabalhosRoute
+  '/trabalhos_/$id': typeof TrabalhosIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,7 +96,7 @@ export interface FileRouteTypes {
     | '/servicos'
     | '/sobre'
     | '/trabalhos'
-    | '/trabalhos/$id'
+    | '/trabalhos_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -104,7 +104,8 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   ServicosRoute: typeof ServicosRoute
   SobreRoute: typeof SobreRoute
-  TrabalhosRoute: typeof TrabalhosRouteWithChildren
+  TrabalhosRoute: typeof TrabalhosRoute
+  TrabalhosIdRoute: typeof TrabalhosIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -144,34 +145,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/trabalhos/$id': {
-      id: '/trabalhos/$id'
-      path: '/$id'
+    '/trabalhos_/$id': {
+      id: '/trabalhos_/$id'
+      path: '/trabalhos/$id'
       fullPath: '/trabalhos/$id'
       preLoaderRoute: typeof TrabalhosIdRouteImport
-      parentRoute: typeof TrabalhosRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface TrabalhosRouteChildren {
-  TrabalhosIdRoute: typeof TrabalhosIdRoute
-}
-
-const TrabalhosRouteChildren: TrabalhosRouteChildren = {
-  TrabalhosIdRoute: TrabalhosIdRoute,
-}
-
-const TrabalhosRouteWithChildren = TrabalhosRoute._addFileChildren(
-  TrabalhosRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
   ServicosRoute: ServicosRoute,
   SobreRoute: SobreRoute,
-  TrabalhosRoute: TrabalhosRouteWithChildren,
+  TrabalhosRoute: TrabalhosRoute,
+  TrabalhosIdRoute: TrabalhosIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
