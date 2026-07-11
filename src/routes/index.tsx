@@ -15,21 +15,22 @@ function Index() {
   const sy = useSpring(my, { stiffness: 60, damping: 20 });
 
   const background = useTransform<number, string>([sx, sy], ([x, y]) => {
-    // Degradê livre — paleta anexada:
-    // Roxo #590066 · Verde #346600 · Marrom #663500
+    // Degradê inspirado na imagem anexada — tons de roxo/violeta
+    // Roxo escuro #2D0A4D · Roxo #590066 · Violeta #7C3AED · Lilás #A855F7
     return `
       conic-gradient(from ${x * 3.6}deg at ${x}% ${y}%,
-        #590066 0deg,
-        #590066 90deg,
-        #346600 170deg,
-        #663500 250deg,
-        #590066 340deg,
-        #590066 360deg
+        #2D0A4D 0deg,
+        #590066 80deg,
+        #7C3AED 160deg,
+        #A855F7 240deg,
+        #590066 320deg,
+        #2D0A4D 360deg
       ),
       conic-gradient(from ${180 - y * 1.8}deg at ${100 - x}% ${100 - y}%,
-        #663500 0deg,
-        #346600 90deg,
-        #590066 180deg,
+        #590066 0deg,
+        #2D0A4D 90deg,
+        #7C3AED 180deg,
+        #A855F7 270deg,
         #590066 360deg
       )
     `;
