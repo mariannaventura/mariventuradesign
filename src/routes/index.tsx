@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { FadeIn } from "../components/motion-primitives";
-import logoAsset from "@/assets/logo-mari.png.asset.json";
+import heroAsset from "@/assets/ativo-hero.png.asset.json";
+import wordmarkAsset from "@/assets/mari-empilhado-white.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -15,23 +16,22 @@ function Index() {
   const sy = useSpring(my, { stiffness: 60, damping: 20 });
 
   const background = useTransform<number, string>([sx, sy], ([x, y]) => {
-    // Degradê inspirado na imagem anexada — tons de roxo/violeta
-    // Roxo escuro #2D0A4D · Roxo #590066 · Violeta #7C3AED · Lilás #A855F7
+    // Degradê em tons de #46037c
     return `
       conic-gradient(from ${x * 3.6}deg at ${x}% ${y}%,
-        #2D0A4D 0deg,
-        #590066 80deg,
-        #7C3AED 160deg,
-        #A855F7 240deg,
-        #590066 320deg,
-        #2D0A4D 360deg
+        #1c0132 0deg,
+        #46037c 80deg,
+        #6a09b8 160deg,
+        #46037c 240deg,
+        #2a024a 320deg,
+        #1c0132 360deg
       ),
       conic-gradient(from ${180 - y * 1.8}deg at ${100 - x}% ${100 - y}%,
-        #590066 0deg,
-        #2D0A4D 90deg,
-        #7C3AED 180deg,
-        #A855F7 270deg,
-        #590066 360deg
+        #46037c 0deg,
+        #1c0132 90deg,
+        #6a09b8 180deg,
+        #46037c 270deg,
+        #2a024a 360deg
       )
     `;
   });
