@@ -49,12 +49,19 @@ function Index() {
       className="relative -mt-16 pt-24 min-h-screen flex flex-col items-center overflow-hidden cursor-crosshair"
     >
       <div className="flex-1 flex flex-col items-center justify-center">
-        {/* Logo Mari Ventura */}
+        {/* Símbolo principal + wordmark empilhado */}
         <FadeIn delay={0.2}>
           <img
-            src={logoAsset.url}
-            alt="Logo Mari Ventura"
+            src={heroAsset.url}
+            alt="Mari Ventura"
             className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl"
+          />
+        </FadeIn>
+        <FadeIn delay={0.35}>
+          <img
+            src={wordmarkAsset.url}
+            alt="Mari Ventura"
+            className="mt-6 w-56 md:w-72 h-auto object-contain drop-shadow-xl"
           />
         </FadeIn>
 

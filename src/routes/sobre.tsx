@@ -33,7 +33,7 @@ function SobrePage() {
             <h1 className="text-4xl md:text-5xl font-display font-semibold">
               Marianna Ventura
             </h1>
-            <p className="mt-2 text-lg text-[#590066] font-medium">
+            <p className="mt-2 text-lg text-[#46037c] font-medium">
               Designer Gráfica · Identidade Visual & Criação Digital e Offline
             </p>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
