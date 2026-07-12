@@ -30,18 +30,18 @@
 
 :root {
   --radius: 0.75rem;
-  /* Paleta: #590066 roxo · #004B66 azul · #346600 verde · #663500 marrom · #AD52BA violeta · #73C7E6 azul-claro */
+  /* Paleta: #46037c roxo · #004B66 azul · #346600 verde · #663500 marrom · #73C7E6 azul-claro */
   --background: oklch(0.99 0.005 300);
   --foreground: oklch(0.18 0.05 320);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.05 320);
-  --primary: oklch(0.32 0.18 320); /* #590066 */
+  --primary: oklch(0.28 0.19 300); /* #46037c */
   --primary-foreground: oklch(0.98 0.01 300);
   --secondary: oklch(0.42 0.12 230); /* #004B66 */
   --secondary-foreground: oklch(0.98 0.01 300);
   --muted: oklch(0.95 0.01 300);
   --muted-foreground: oklch(0.45 0.05 320);
-  --accent: oklch(0.62 0.22 330); /* #AD52BA */
+  --accent: oklch(0.28 0.19 300); /* #46037c */
   --accent-foreground: oklch(0.98 0.01 300);
   --border: oklch(0.88 0.02 300);
   --input: oklch(0.88 0.02 300);
