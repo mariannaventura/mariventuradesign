@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-19T02:00:00Z",
+  "title": "Design System: Mari Ventura",
+  "extensions": {
+    "colorMeta": {
+      "ink-violet": {
+        "role": "primary",
+        "displayName": "Ink Violet",
+        "canonical": "oklch(0.303 0.161 297)",
+        "tonalRamp": [
+          "oklch(0.15 0.13 297)",
+          "oklch(0.22 0.155 297)",
+          "oklch(0.303 0.161 297)",
+          "oklch(0.40 0.16 297)",
+          "oklch(0.52 0.15 297)",
+          "oklch(0.64 0.12 297)",
+          "oklch(0.78 0.07 297)",
+          "oklch(0.92 0.03 297)"
+        ]
+      },
+      "sky": {
+        "role": "accent",
+        "displayName": "Sky",
+        "canonical": "oklch(0.78 0.087 214)",
+        "tonalRamp": [
+          "oklch(0.30 0.07 214)",
+          "oklch(0.40 0.08 214)",
+          "oklch(0.50 0.085 214)",
+          "oklch(0.60 0.088 214)",
+          "oklch(0.70 0.088 214)",
+          "oklch(0.78 0.087 214)",
+          "oklch(0.88 0.05 214)",
+          "oklch(0.95 0.02 214)"
+        ]
+      },
+      "lilac": {
+        "role": "tertiary",
+        "displayName": "Lilac",
+        "canonical": "oklch(0.645 0.158 306)",
+        "tonalRamp": [
+          "oklch(0.20 0.10 306)",
+          "oklch(0.30 0.13 306)",
+          "oklch(0.42 0.15 306)",
+          "oklch(0.53 0.16 306)",
+          "oklch(0.645 0.158 306)",
+          "oklch(0.75 0.12 306)",
+          "oklch(0.85 0.07 306)",
+          "oklch(0.93 0.03 306)"
+        ]
+      },
+      "olive": {
+        "role": "tertiary",
+        "displayName": "Olive",
+        "canonical": "oklch(0.421 0.114 131)",
+        "tonalRamp": [
+          "oklch(0.15 0.06 131)",
+          "oklch(0.25 0.09 131)",
+          "oklch(0.34 0.105 131)",
+          "oklch(0.421 0.114 131)",
+          "oklch(0.52 0.10 131)",
+          "oklch(0.64 0.08 131)",
+          "oklch(0.78 0.05 131)",
+          "oklch(0.92 0.02 131)"
+        ]
+      },
+      "brown": {
+        "role": "tertiary",
+        "displayName": "Brown",
+        "canonical": "oklch(0.345 0.083 55)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 55)",
+          "oklch(0.22 0.065 55)",
+          "oklch(0.28 0.075 55)",
+          "oklch(0.345 0.083 55)",
+          "oklch(0.45 0.08 55)",
+          "oklch(0.58 0.07 55)",
+          "oklch(0.72 0.05 55)",
+          "oklch(0.88 0.025 55)"
+        ]
+      },
+      "petrol-teal": {
+        "role": "secondary",
+        "displayName": "Petrol Teal",
+        "canonical": "oklch(0.387 0.078 231)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 231)",
+          "oklch(0.22 0.06 231)",
+          "oklch(0.30 0.07 231)",
+          "oklch(0.387 0.078 231)",
+          "oklch(0.48 0.07 231)",
+          "oklch(0.60 0.06 231)",
+          "oklch(0.75 0.04 231)",
+          "oklch(0.90 0.02 231)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "oklch(0.99 0.005 300)",
+        "tonalRamp": [
+          "oklch(0.15 0.02 300)",
+          "oklch(0.28 0.02 300)",
+          "oklch(0.42 0.015 300)",
+          "oklch(0.58 0.01 300)",
+          "oklch(0.72 0.008 300)",
+          "oklch(0.85 0.006 300)",
+          "oklch(0.93 0.005 300)",
+          "oklch(0.99 0.005 300)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Violet Ink Text",
+        "canonical": "oklch(0.18 0.05 320)"
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Pure Card White",
+        "canonical": "oklch(1 0 0)"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Lavender",
+        "canonical": "oklch(0.95 0.01 300)"
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Muted Text",
+        "canonical": "oklch(0.45 0.05 320)"
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline Border",
+        "canonical": "oklch(0.88 0.02 300)"
+      },
+      "ring": {
+        "role": "neutral",
+        "displayName": "Focus Ring",
+        "canonical": "oklch(0.62 0.22 330)"
+      },
+      "destructive": {
+        "role": "neutral",
+        "displayName": "Destructive Red",
+        "canonical": "oklch(0.577 0.245 27.325)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Fraunces Display",
+        "purpose": "h1-h4 only, hero headline and section titles. Never used in body copy or UI chrome."
+      },
+      "body": {
+        "displayName": "Inter Body",
+        "purpose": "All body copy, nav labels, buttons, chips, footer text."
+      }
+    },
+    "shadows": [
+      { "name": "photo-lift", "value": "shadow-lg (Tailwind default)", "purpose": "Sticky profile photo on Sobre, hero image on case-study detail pages." },
+      { "name": "hover-lift", "value": "shadow-md (Tailwind default), hover-only", "purpose": "Contact link cards; flat at rest, lifts on hover to signal interactivity." },
+      { "name": "logo-drop", "value": "drop-shadow-2xl / drop-shadow-xl (Tailwind default)", "purpose": "Hero symbol and wordmark images, separating them from the animated gradient behind." }
+    ],
+    "motion": [
+      { "name": "fade-in", "value": "opacity 0->1, translateY 20-24px->0, duration 0.6s, cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default entrance animation for sections and elements (FadeIn / StaggerItem)." },
+      { "name": "stagger", "value": "staggerChildren 0.08s, delayChildren 0.1s", "purpose": "Sequential reveal of list/grid items (Stagger wrapper)." },
+      { "name": "hero-gradient-spring", "value": "useSpring stiffness 60, damping 20", "purpose": "Smooths cursor-tracked position driving the home hero's conic gradient." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid Sky CTA, pill-shaped. Used for the hero's main call to action.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Ver trabalhos</a>",
+      "css": ".ds-btn-primary { display: inline-block; background-color: #71C6D9; color: #0a0a0a; padding: 12px 24px; border-radius: 9999px; font-weight: 500; text-decoration: none; transition: background-color 0.2s ease; } .ds-btn-primary:hover { background-color: #8bd3e3; } .ds-btn-primary:focus-visible { outline: 2px solid oklch(0.62 0.22 330); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined ghost CTA in Sky, pill-shaped. Fallback action beside the primary CTA.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Entrar em contato</a>",
+      "css": ".ds-btn-secondary { display: inline-block; background-color: transparent; color: #71C6D9; border: 1px solid #71C6D9; padding: 12px 24px; border-radius: 9999px; font-weight: 500; text-decoration: none; transition: background-color 0.2s ease; } .ds-btn-secondary:hover { background-color: rgba(255,255,255,0.1); } .ds-btn-secondary:focus-visible { outline: 2px solid oklch(0.62 0.22 330); outline-offset: 2px; }"
+    },
+    {
+      "name": "Filter Pill",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Active/inactive filter toggle used on the Trabalhos portfolio grid.",
+      "html": "<div class=\"ds-pill-row\"><button class=\"ds-pill ds-pill--active\">Branding</button><button class=\"ds-pill\">Editorial</button></div>",
+      "css": ".ds-pill-row { display: flex; gap: 8px; } .ds-pill { padding: 8px 16px; border-radius: 9999px; font-size: 0.875rem; border: 1px solid oklch(0.88 0.02 300); background-color: oklch(0.99 0.005 300); color: oklch(0.18 0.05 320); transition: all 0.2s ease; cursor: pointer; } .ds-pill:hover { background-color: oklch(0.95 0.01 300); } .ds-pill--active { background-color: oklch(0.303 0.161 297); border-color: oklch(0.303 0.161 297); color: oklch(0.98 0.01 297); box-shadow: 0 1px 2px rgba(0,0,0,0.08); } .ds-pill:focus-visible { outline: 2px solid oklch(0.62 0.22 330); outline-offset: 2px; }"
+    },
+    {
+      "name": "Tag Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Informational, non-interactive tag used for skills and portfolio categories.",
+      "html": "<span class=\"ds-chip\">Identidade Visual</span>",
+      "css": ".ds-chip { display: inline-block; padding: 4px 12px; border-radius: 9999px; background-color: oklch(0.95 0.01 300); color: oklch(0.45 0.05 320); font-size: 0.75rem; }"
+    },
+    {
+      "name": "Contact Link Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Stacked link card on the Contato page; flat at rest, lifts and shifts to accent border on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><strong>Email</strong><span>hello@mariventura.com</span></a>",
+      "css": ".ds-card { display: block; padding: 24px; border-radius: 16px; border: 1px solid oklch(0.88 0.02 300); background-color: oklch(1 0 0); text-decoration: none; color: oklch(0.18 0.05 320); transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-card:hover { border-color: oklch(0.303 0.161 297); box-shadow: 0 4px 12px rgba(0,0,0,0.08); } .ds-card strong { display: block; font-family: 'Fraunces', serif; letter-spacing: -0.02em; margin-bottom: 4px; }"
+    },
+    {
+      "name": "Glass Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Fixed translucent header that adapts contrast to the page beneath it. Shown here in the light-page variant.",
+      "html": "<header class=\"ds-nav\"><nav class=\"ds-nav-inner\"><span class=\"ds-nav-brand\">Mari Ventura</span><ul class=\"ds-nav-links\"><li><a href=\"#\" class=\"ds-nav-link ds-nav-link--active\">Início</a></li><li><a href=\"#\" class=\"ds-nav-link\">Trabalhos</a></li><li><a href=\"#\" class=\"ds-nav-link\">Sobre</a></li><li><a href=\"#\" class=\"ds-nav-link\">Contato</a></li></ul></nav></header>",
+      "css": ".ds-nav { position: fixed; top: 0; left: 0; right: 0; backdrop-filter: blur(12px); background-color: rgba(255,255,255,0.4); border-bottom: 1px solid rgba(0,0,0,0.1); } .ds-nav-inner { max-width: 72rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; } .ds-nav-brand { font-family: 'Fraunces', serif; letter-spacing: -0.02em; font-weight: 600; color: #000; } .ds-nav-links { display: flex; gap: 24px; list-style: none; font-size: 0.875rem; } .ds-nav-link { color: #000; text-decoration: none; transition: color 0.2s ease; } .ds-nav-link:hover { color: #3B0373; } .ds-nav-link--active { color: #3B0373; font-weight: 500; }"
+    },
+    {
+      "name": "Image Placeholder",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Diagonal-stripe placeholder for portfolio images not yet uploaded; the site's signature 'unfinished, honestly' utility.",
+      "html": "<div class=\"ds-image-placeholder\">Imagem em breve</div>",
+      "css": ".ds-image-placeholder { display: flex; align-items: center; justify-content: center; aspect-ratio: 4/5; background: repeating-linear-gradient(45deg, oklch(0.95 0.01 300), oklch(0.95 0.01 300) 10px, oklch(0.88 0.02 300) 10px, oklch(0.88 0.02 300) 20px); color: oklch(0.45 0.05 320); font-size: 0.875rem; text-align: center; padding: 16px; border: 1px dashed oklch(0.88 0.02 300); border-radius: 12px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Confident Signature",
+    "overview": "This is a designer's own mark, not a template pretending to be one. Every screen commits fully to one deep violet identity rather than hedging with a safe, interchangeable palette — the visual equivalent of a signature written without a second draft. Fraunces carries that confidence in the headlines: a serif with personality, set tight (-0.02em) so it reads as considered rather than decorative. Inter does the quiet work underneath, keeping bios, labels, and body copy legible and unfussy so the display type stays the star.\n\nThe system explicitly rejects the overly corporate, stiff-resume-site feel — no boxed-in LinkedIn-profile layouts, no generic \"creative studio\" sameness. Personality shows up in motion (the mouse-reactive hero gradient, staggered reveals) and in color commitment, not in decorative noise.",
+    "keyCharacteristics": [
+      "One saturated violet carries the brand; nothing else competes with it for attention.",
+      "Pill-shaped (rounded-full) buttons and tags throughout — soft, never sharp-cornered.",
+      "Glass, translucent navigation that adapts to the page beneath it.",
+      "Motion is a first-class part of the identity, not decoration bolted on afterward."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Ink Violet is the only color allowed to signal \"this is active / this is the brand\" — active nav links, active filter pills, focus rings on interactive elements. It does not appear as a body-text color or a large background fill outside the hero.", "section": "colors" },
+      { "name": "The Serif-Owns-Headings Rule", "body": "Fraunces is reserved for h1–h4 only, set at -0.02em. Inter never appears at display size, and Fraunces never appears in body copy or UI chrome (buttons, nav, chips).", "section": "typography" },
+      { "name": "The Flat-at-Rest Rule", "body": "Cards and interactive surfaces carry no shadow by default. Shadow appears only as a hover response or on isolated hero imagery — never as ambient depth applied everywhere.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Ink Violet as the only \"this is active/branded\" signal — nav active state, filter-pill active state, focus/hover accents.",
+      "Do use rounded-full for every button and tag; it's a system-wide constant, not a per-component choice.",
+      "Do keep shadows flat-at-rest and reserve them for hover feedback or isolated hero imagery (profile photo, case-study hero, logo marks).",
+      "Do pair Fraunces (headings only, -0.02em) with Inter (everything else) — never mix in a third typeface.",
+      "Do use the entrance choreography already established (FadeIn/Stagger/StaggerItem, 0.6s duration, cubic-bezier(0.22, 1, 0.36, 1) easing, 20–24px translate) for new sections, so motion feels consistent rather than one-off per page."
+    ],
+    "donts": [
+      "Don't make the site feel like an \"overly corporate or stiff resume site\" — no boxed LinkedIn-profile layout, no neutral-safe corporate palette. This is a designer's authored site.",
+      "Don't introduce a second saturated accent competing with Ink Violet; Sky (#71C6D9) is the only sanctioned secondary color, reserved for CTAs and dark-nav states.",
+      "Don't apply Petrol Teal (#004B66), Olive (#365902), or Brown (#592B02) speculatively — they stay dormant until a real component needs a distinct color from this palette.",
+      "Don't reuse the hero's mouse-reactive conic gradient as a generic decorative background elsewhere; it's the home page's signature move, not a pattern.",
+      "Don't add ambient/ubiquitous drop shadows to cards or buttons — this system stays flat except for the specific hover and hero-image cases documented in Elevation."
+    ]
+  }
+}

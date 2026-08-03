@@ -21,6 +21,14 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-sky: var(--sky);
+  --color-sky-foreground: var(--sky-foreground);
+  --color-lilac: var(--lilac);
+  --color-lilac-foreground: var(--lilac-foreground);
+  --color-olive: var(--olive);
+  --color-olive-foreground: var(--olive-foreground);
+  --color-brown: var(--brown);
+  --color-brown-foreground: var(--brown-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -30,19 +38,27 @@
 
 :root {
   --radius: 0.75rem;
-  /* Paleta: #46037c roxo · #004B66 azul · #346600 verde · #663500 marrom · #73C7E6 azul-claro */
+  /* Paleta oficial: #3B0373 roxo escuro · #A571D9 lilás · #71C6D9 azul-claro · #365902 verde-oliva · #592B02 marrom · #004B66 azul-petróleo */
   --background: oklch(0.99 0.005 300);
   --foreground: oklch(0.18 0.05 320);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.05 320);
-  --primary: oklch(0.28 0.19 300); /* #46037c */
-  --primary-foreground: oklch(0.98 0.01 300);
-  --secondary: oklch(0.42 0.12 230); /* #004B66 */
-  --secondary-foreground: oklch(0.98 0.01 300);
+  --primary: oklch(0.303 0.161 297); /* #3B0373 roxo escuro */
+  --primary-foreground: oklch(0.98 0.01 297);
+  --secondary: oklch(0.387 0.078 231); /* #004B66 azul-petróleo */
+  --secondary-foreground: oklch(0.98 0.01 231);
   --muted: oklch(0.95 0.01 300);
   --muted-foreground: oklch(0.45 0.05 320);
-  --accent: oklch(0.28 0.19 300); /* #46037c */
-  --accent-foreground: oklch(0.98 0.01 300);
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+  --sky: oklch(0.78 0.087 214); /* #71C6D9 azul-claro */
+  --sky-foreground: var(--foreground);
+  --lilac: oklch(0.645 0.158 306); /* #A571D9 lilás */
+  --lilac-foreground: var(--foreground);
+  --olive: oklch(0.421 0.114 131); /* #365902 verde-oliva */
+  --olive-foreground: oklch(0.98 0.01 131);
+  --brown: oklch(0.345 0.083 55); /* #592B02 marrom */
+  --brown-foreground: oklch(0.98 0.01 55);
   --border: oklch(0.88 0.02 300);
   --input: oklch(0.88 0.02 300);
   --ring: oklch(0.62 0.22 330);

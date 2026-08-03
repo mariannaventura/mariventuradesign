@@ -1,11 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import logoWhite from "@/assets/mari-empilhado-white.png.asset.json";
-import logoPurple from "@/assets/mari-empilhado-purple.png.asset.json";
 
 export function Nav() {
   const links = [
     { to: "/", label: "Início" },
-    { to: "/trabalhos", label: "Trabalhos" },
+    { to: "/projetos", label: "Projetos" },
     { to: "/servicos", label: "Serviços" },
     { to: "/sobre", label: "Sobre" },
     { to: "/contato", label: "Contato" },
@@ -14,20 +12,20 @@ export function Nav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   // Rotas com fundo escuro (degrade) usam texto branco + hover azul claro.
-  // Demais rotas usam texto preto + hover #46037c.
+  // Demais rotas usam texto preto + hover roxo primário.
   const darkBgRoutes = ["/"];
   const isDarkBg = darkBgRoutes.includes(pathname);
 
   const baseText = isDarkBg ? "text-white" : "text-black";
-  const hoverText = isDarkBg ? "hover:text-[#73C7E6]" : "hover:text-[#46037c]";
-  const activeColor = isDarkBg ? "text-[#73C7E6]" : "text-[#46037c]";
+  const hoverText = isDarkBg ? "hover:text-sky" : "hover:text-primary";
+  const activeColor = isDarkBg ? "text-sky" : "text-primary";
 
   // Efeito de vidro para melhorar leitura quando a barra sobrepõe conteúdo.
   const glass = isDarkBg
     ? "backdrop-blur-md bg-black/20 border-b border-white/10"
     : "backdrop-blur-md bg-white/40 border-b border-black/10";
 
-  const brandLogo = isDarkBg ? logoWhite.url : logoPurple.url;
+  const brandLogo = isDarkBg ? "/images/wordmark-white.png" : "/images/wordmark-purple.png";
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 ${glass}`}>

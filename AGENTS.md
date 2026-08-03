@@ -8,3 +8,12 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Design Context
+
+This project has captured design context via the `impeccable` skill:
+
+- [PRODUCT.md](./PRODUCT.md) — register (brand), users, positioning, brand personality, anti-references.
+- [DESIGN.md](./DESIGN.md) — visual system: colors, typography, elevation, components, do's and don'ts.
+
+Read both before making UI changes so new work stays on-brand.

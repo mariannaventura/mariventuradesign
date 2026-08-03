@@ -1,0 +1,85 @@
+[@skill:branding_logo:Logo & Branding:https://assets-persist.lovart.ai/web/icon-skill-branding.svg]sou designer grafica e queo fazer o brandbook da minha marca. segue abaixo as logos que eu ja tenho[@image:1783639100667:Prancheta 1:https://a.lovart.ai/artifacts/user/1vfX7yuIz4JwCKDD.png][@image:1783639113194:Prancheta 2:https://a.lovart.ai/artifacts/user/uiar8Ji9eY3i2CHx.png][@image:1783639112453:Prancheta 3:https://a.lovart.ai/artifacts/user/vvXCxZVTEYAsX1IW.png][@image:1783639113105:Prancheta 4:https://a.lovart.ai/artifacts/user/MOyMeWkvBjIir9kG.png][@image:1783639112774:Prancheta 5:https://a.lovart.ai/artifacts/user/TdYrhJ7Qey95L5A6.png]. tambem gostaria que fosse gerado a versao preto e branco de tudo e 2 versoes de degrades para os fundos. nao quero utilizar cor solida em nenhum momento como fundo. segue minha paleta de cores, ela deve ser retratada com o mesmo formato inserido na imagem[@image:1783639160529:Prancheta 6:https://a.lovart.ai/artifacts/user/fLITYx8H4XL1Vf7T.png] minha fonte de apoio vou anexar a imagem tambem [@image:1783639190361:Prancheta 7:https://a.lovart.ai/artifacts/user/QgHBxg08sR3AaC0V.png]. faca as perguntas necessarias sobre como montar o brandbook e quais sessoes terao antes de comecar a executar de fato 
+
+
+
+
+Olá! Vou analisar seus materiais e preparar um plano completo para o brandbook da Mari Ventura Design Gráfico.
+Análise dos Materiais Recebidos
+
+Logos existentes:
+
+    Image #1: Logo principal horizontal (mascote + tipografia)
+    Image #2: Monograma "MV"
+    Image #3: Logo vertical (mascote acima da tipografia)
+    Image #4: Logo horizontal estendido
+    Image #5: Logo em selo/badge circular
+
+Paleta de cores (Image #6):
+
+    Roxo escuro (#5B0A91)
+    Lilás (#A855F7)
+    Verde oliva (#4A7C0F)
+    Marrom (#8B4513)
+    Azul petróleo (#0F4C75)
+    Azul claro (#87CEEB)
+
+Fonte de apoio (Image #7): Imagem em preto — preciso que você informe o nome da fonte, pois a imagem está sem conteúdo vis￭vel.
+Perguntas para Definir o Brandbook
+
+Antes de prosseguir, preciso esclarecer alguns pontos:
+1. Estrutura do Brandbook
+
+Quais seções você deseja incluir? Sugiro:
+
+    Capa/Apresenta￧￣o
+    Conceito da marca (missão, vis￣o, valores)
+    Logotipos (versões e aplica￧￵es)
+    Paleta de cores
+    Tipografia
+    Elementos gráficos/padr￵es
+    Aplica￧￵es (mockups)
+    Redes sociais
+    Proibições/Don'ts
+
+Quer incluir todas ou prefere focar em algumas espec￭ficas?
+2. Versões em Preto e Branco
+
+    Quer versões positivo (logo preto em fundo branco) e negativo (logo branco em fundo preto)?
+    Ou apenas uma versão monocrom￡tica?
+
+3. Degrad￪s de Fundo
+
+Você mencionou 2 versões de degradês. Prefere:
+
+    Degrad￪s entre as cores da sua paleta (ex: roxo → lilás)?
+    Degradês sutis em tons de uma mesma cor?
+    Quer que eu sugira combinações ou você j￡ tem prefer￪ncias?
+
+4. Fonte de Apoio
+
+Como a Image #7 está em branco, por favor informe:
+
+    Qual é o nome da fonte de apoio?
+    ￉ uma fonte gratuita (Google Fonts) ou licenciada?
+
+5. Elementos Visuais Adicionais
+
+    Quer criar padrões/backgrounds usando o mascote ou elementos da identidade?
+    Deseja incluir ícones personalizados?
+    Há alguma textura ou efeito visual que goste (ex: grain, noise, glassmorphism)?
+
+6. Formato de Entrega
+
+    Prefere p￡ginas individuais (PNG/JPG) ou um documento consolidado?
+    Precisa de versão para impressão (CMYK) ou apenas digital (RGB)?
+
+
+
+
+
+1. pode incluir todas
+2. positiva e negativa
+3. do roxo pro lilas, mas precisa ser organico
+4. a fonte de apoio e a lavishe0.4
+5. elementos visuais eu preciso que voce crie, use formas geometricas(algumas ja estao presentes nos logos, mas pode tambem utilizar linhas curvas. pode tambem incluir icones personalizados
+6. apenas rgb, podem ser imagens em paginas individuais

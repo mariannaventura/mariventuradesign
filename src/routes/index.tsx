@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { FadeIn } from "../components/motion-primitives";
-import heroAsset from "@/assets/ativo-hero.png.asset.json";
-import wordmarkAsset from "@/assets/mari-empilhado-white.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -16,22 +14,22 @@ function Index() {
   const sy = useSpring(my, { stiffness: 60, damping: 20 });
 
   const background = useTransform<number, string>([sx, sy], ([x, y]) => {
-    // Degradê em tons de #46037c
+    // Degradê orgânico do roxo (#3B0373) pro lilás (#A571D9), paleta oficial
     return `
       conic-gradient(from ${x * 3.6}deg at ${x}% ${y}%,
-        #1c0132 0deg,
-        #46037c 80deg,
-        #6a09b8 160deg,
-        #46037c 240deg,
-        #2a024a 320deg,
-        #1c0132 360deg
+        #180037 0deg,
+        #3b0373 80deg,
+        #a671d9 160deg,
+        #3b0373 240deg,
+        #6c3da4 320deg,
+        #180037 360deg
       ),
       conic-gradient(from ${180 - y * 1.8}deg at ${100 - x}% ${100 - y}%,
-        #46037c 0deg,
-        #1c0132 90deg,
-        #6a09b8 180deg,
-        #46037c 270deg,
-        #2a024a 360deg
+        #3b0373 0deg,
+        #180037 90deg,
+        #a671d9 180deg,
+        #3b0373 270deg,
+        #6c3da4 360deg
       )
     `;
   });
@@ -52,14 +50,14 @@ function Index() {
         {/* Símbolo principal + wordmark empilhado */}
         <FadeIn delay={0.2}>
           <img
-            src={heroAsset.url}
+            src="/images/hero-symbol.png"
             alt="Mari Ventura"
             className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl"
           />
         </FadeIn>
         <FadeIn delay={0.35}>
           <img
-            src={wordmarkAsset.url}
+            src="/images/wordmark-white.png"
             alt="Mari Ventura"
             className="mt-6 w-56 md:w-72 h-auto object-contain drop-shadow-xl"
           />
@@ -76,16 +74,14 @@ function Index() {
 
         <FadeIn delay={0.8} className="mt-10 flex gap-4">
           <Link
-            to="/trabalhos"
-            className="px-6 py-3 rounded-full font-medium transition-colors"
-            style={{ backgroundColor: "#73C7E6", color: "#0a0a0a" }}
+            to="/projetos"
+            className="px-6 py-3 rounded-full font-medium bg-sky text-sky-foreground transition-colors hover:bg-sky/90"
           >
-            Ver trabalhos
+            Ver projetos
           </Link>
           <Link
             to="/contato"
-            className="px-6 py-3 rounded-full border font-medium transition-colors hover:bg-white/10"
-            style={{ borderColor: "#73C7E6", color: "#73C7E6" }}
+            className="px-6 py-3 rounded-full border border-sky text-sky font-medium transition-colors hover:bg-white/10"
           >
             Entrar em contato
           </Link>
