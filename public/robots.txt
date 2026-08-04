@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mariventura.com.br/sitemap.xml
+Sitemap: https://mari-ventura-design.web.app/sitemap.xml
