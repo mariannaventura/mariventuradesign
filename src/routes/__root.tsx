@@ -87,8 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Mari Ventura - Designer Gráfico" },
       { name: "twitter:description", content: "Portfólio de design gráfico: identidade visual, branding e projetos criativos." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5040887b-45f6-41a1-b7c9-d62d5b71a328/id-preview-a9d75d18--84c55b47-2415-42df-8965-6856ce79d200.lovable.app-1783606594045.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5040887b-45f6-41a1-b7c9-d62d5b71a328/id-preview-a9d75d18--84c55b47-2415-42df-8965-6856ce79d200.lovable.app-1783606594045.png" },
+      { property: "og:image", content: "https://mariventura.com.br/images/og-cover.png" },
+      { name: "twitter:image", content: "https://mariventura.com.br/images/og-cover.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>

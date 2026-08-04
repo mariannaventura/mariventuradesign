@@ -16,9 +16,23 @@ dist-ssr
 .nitro
 *.local
 
+# Secrets / env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+firebase-debug.log*
+.firebase/
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
+
+# Impeccable skill — local/ephemeral state, not project content
+.impeccable/hook.cache.json
+.impeccable/live/server.json
+.impeccable/critique/
 
 # Editor directories and files
 .vscode/*

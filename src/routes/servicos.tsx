@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FadeIn, Stagger, StaggerItem } from "../components/motion-primitives";
+import { ServiceInquiryDialog } from "../components/service-inquiry-dialog";
+import { cn } from "@/lib/utils";
 
 type Pacote = {
   nome: string;
   preco: string;
   itens: string[];
+  destaque?: boolean;
 };
 
 type Servico = {
@@ -27,6 +30,7 @@ const SERVICOS: Servico[] = [
       {
         nome: "Completo",
         preco: "a partir de R$950",
+        destaque: true,
         itens: [
           "Tudo do Essencial",
           "Aplicações (cartão de visita, papel timbrado)",
@@ -57,6 +61,7 @@ const SERVICOS: Servico[] = [
       {
         nome: "Com Planejamento",
         preco: "a partir de R$650/mês",
+        destaque: true,
         itens: ["Calendário editorial", "12 posts por mês", "Stories"],
       },
       {
@@ -79,6 +84,7 @@ const SERVICOS: Servico[] = [
       {
         nome: "Institucional",
         preco: "a partir de R$900",
+        destaque: true,
         itens: ["De 3 a 5 páginas", "Estrutura de navegação completa"],
       },
       {
@@ -130,7 +136,19 @@ function ServicosPage() {
           <Stagger className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {servico.pacotes.map((pacote) => (
               <StaggerItem key={pacote.nome}>
-                <div className="h-full flex flex-col p-6 rounded-2xl border border-border bg-card hover:border-accent hover:shadow-md transition-all">
+                <div
+                  className={cn(
+                    "relative h-full flex flex-col p-6 rounded-2xl border bg-card hover:shadow-md transition-all",
+                    pacote.destaque
+                      ? "border-accent shadow-sm"
+                      : "border-border hover:border-accent",
+                  )}
+                >
+                  {pacote.destaque && (
+                    <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
+                      Mais popular
+                    </span>
+                  )}
                   <h3 className="font-display text-xl font-semibold">{pacote.nome}</h3>
                   <p className="mt-1 text-primary font-medium">{pacote.preco}</p>
                   <ul className="mt-4 space-y-2 text-sm text-muted-foreground list-disc list-inside flex-1">
@@ -138,12 +156,11 @@ function ServicosPage() {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                  <Link
-                    to="/contato"
-                    className="mt-6 text-sm font-medium text-accent hover:underline underline-offset-4"
-                  >
-                    Quero esse pacote →
-                  </Link>
+                  <ServiceInquiryDialog servico={`${servico.titulo} — ${pacote.nome}`}>
+                    <button className="mt-6 inline-flex items-center justify-center rounded-full border border-accent text-accent px-5 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
+                      Quero esse pacote
+                    </button>
+                  </ServiceInquiryDialog>
                 </div>
               </StaggerItem>
             ))}
@@ -160,12 +177,11 @@ function ServicosPage() {
           </div>
           <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
             <p className="text-primary font-medium">{ADDON.preco}</p>
-            <Link
-              to="/contato"
-              className="inline-flex items-center justify-center rounded-full bg-sky text-sky-foreground px-6 py-3 font-medium hover:opacity-90 transition-opacity"
-            >
-              Quero esse extra
-            </Link>
+            <ServiceInquiryDialog servico={ADDON.titulo} title="Quero esse extra">
+              <button className="inline-flex items-center justify-center rounded-full border border-accent text-accent px-5 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
+                Quero esse extra
+              </button>
+            </ServiceInquiryDialog>
           </div>
         </div>
       </FadeIn>

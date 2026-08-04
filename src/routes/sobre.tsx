@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Download } from "lucide-react";
 import {
   TbBrandAdobePhotoshop,
   TbBrandAdobeIllustrator,
@@ -11,6 +11,7 @@ import { SiVtex } from "react-icons/si";
 import { FadeIn, Stagger, StaggerItem } from "../components/motion-primitives";
 import { ToolBadge } from "../components/tool-badge";
 import { SkillScale } from "../components/skill-scale";
+import { PROJETOS } from "../lib/projetos";
 
 const FERRAMENTAS = [
   { nome: "Photoshop", icone: TbBrandAdobePhotoshop, cor: "#001E36" },
@@ -33,6 +34,45 @@ const SOFT_SKILLS = [
   { nome: "Adaptabilidade a diferentes contextos de marca", nivel: 5 },
 ];
 
+const EXPERIENCIA = [
+  {
+    cargo: "Estrategista de Marca e Conteúdo",
+    empresa: "Festival Afrontosas",
+    quando: "Jun/2025 — Mai/2026",
+  },
+  {
+    cargo: "Designer Gráfica Júnior",
+    empresa: "Clima Rio",
+    quando: "Jul/2025 — Out/2025",
+  },
+  {
+    cargo: "Assistente de Design Gráfico",
+    empresa: "Clima Rio",
+    quando: "Fev/2024 — Jul/2025",
+  },
+  {
+    cargo: "Auxiliar de Design",
+    empresa: "Clima Rio",
+    quando: "Out/2023 — Fev/2024",
+  },
+  {
+    cargo: "Estagiária de Design Gráfico",
+    empresa: "Clima Rio",
+    quando: "Dez/2022 — Set/2023",
+  },
+  {
+    cargo: "Assistente de Trade Marketing",
+    empresa: "Lojas Caçula",
+    quando: "Fev/2021 — Mar/2022",
+  },
+];
+
+const DESTAQUES = [
+  { numero: String(PROJETOS.length), label: "projetos no portfólio" },
+  { numero: "100+", label: "leads gerados no quiz da Febrava" },
+  { numero: "12+", label: "eventos com peças de campanha" },
+];
+
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
@@ -49,10 +89,10 @@ export const Route = createFileRoute("/sobre")({
 
 function SobrePage() {
   return (
-    <section className="max-w-5xl mx-auto px-6 pt-32 pb-20">
+    <section className="max-w-5xl mx-auto px-6 pt-32 pb-20 print:pt-8 print:pb-8">
       <div className="grid md:grid-cols-[280px_1fr] gap-10">
         <FadeIn>
-          <div className="overflow-hidden rounded-lg shadow-lg sticky top-28">
+          <div className="overflow-hidden rounded-lg shadow-lg sticky top-28 print:static print:shadow-none">
             <img
               src="/images/marianna-foto.jpg"
               alt="Marianna Ventura"
@@ -69,247 +109,95 @@ function SobrePage() {
             <p className="mt-2 text-lg text-primary font-medium">
               Designer Gráfica · Identidade Visual & Criação Digital e Offline
             </p>
-            <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-              Designer gráfica com formação em Design e experiência em criação
-              e desdobramento de peças para campanhas, redes sociais, materiais
-              institucionais, PDV e e-commerce. Tenho vivência em manter
-              consistência de identidade visual em múltiplos canais e lidar com
-              demandas simultâneas em ambiente de varejo. Domínio do Pacote
-              Adobe (Photoshop, Illustrator, InDesign), Figma e Canva. Noções
-              de UX/UI e ferramentas de IA aplicadas ao design.
+            <p className="mt-4 border-l-2 border-sky pl-4 font-display italic text-xl leading-relaxed">
+              Design gráfico com propósito e sensibilidade.
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
               Nova Iguaçu – RJ · mariannaventura08@hotmail.com
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {DESTAQUES.map((d) => (
+                <div key={d.label} className="min-w-[132px] rounded-xl bg-muted px-4 py-3">
+                  <p className="font-display text-2xl font-semibold text-primary">{d.numero}</p>
+                  <p className="mt-0.5 text-xs leading-tight text-muted-foreground">{d.label}</p>
+                </div>
+              ))}
+            </div>
           </FadeIn>
 
           <FadeIn delay={0.15} className="mt-10">
             <h2 className="font-display text-2xl font-semibold">
               Experiência
             </h2>
-            <Stagger className="mt-6 relative border-l-2 border-border pl-6 space-y-8">
-              <StaggerItem className="relative">
-                <span className="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-primary ring-4 ring-background" />
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h3 className="font-medium">
-                    Estrategista de Marca e Conteúdo
-                  </h3>
-                  <span className="text-sm text-muted-foreground">
-                    Jun/2025 — Mai/2026 (prev.)
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Festival Afrontosas · Projeto colaborativo · Remoto
-                </p>
-                <ul className="mt-2 text-sm list-disc list-inside space-y-1 text-foreground/80">
-                  <li>
-                    Direção de arte e criação de peças para Instagram (feed,
-                    carrossel e stories), mantendo consistência visual da
-                    marca.
-                  </li>
-                  <li>
-                    Gestão de calendário editorial e execução de 3 a 4
-                    publicações semanais, com publicação diária no pré-evento.
-                  </li>
-                  <li>
-                    Edição de vídeos curtos e apoio à comunicação de
-                    parcerias com marcas.
-                  </li>
-                </ul>
-              </StaggerItem>
-
-              <StaggerItem className="relative">
-                <span className="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-muted-foreground/40 ring-4 ring-background" />
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h3 className="font-medium">Designer Gráfica Júnior</h3>
-                  <span className="text-sm text-muted-foreground">
-                    Jul/2025 — Out/2025
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Clima Rio — Marketing & Varejo · Rio de Janeiro, RJ
-                </p>
-                <ul className="mt-2 text-sm list-disc list-inside space-y-1 text-foreground/80">
-                  <li>
-                    Desenvolvimento de peças de campanha institucionais e
-                    promocionais para canais digitais e offline.
-                  </li>
-                  <li>
-                    Criação para redes sociais, e-mail marketing, PDV,
-                    endomarketing e mais de 12 eventos.
-                  </li>
-                  <li>
-                    Finalização e fechamento de arquivos para impressão,
-                    incluindo o catálogo 2025/2026.
-                  </li>
-                  <li>
-                    Padronização visual de mais de 10 lojas físicas.
-                  </li>
-                  <li>
-                    Apoio ao e-commerce na VTEX e fluxos automatizados de
-                    e-mail na Connectif.
-                  </li>
-                </ul>
-              </StaggerItem>
-
-              <StaggerItem className="relative">
-                <span className="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-muted-foreground/40 ring-4 ring-background" />
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h3 className="font-medium">Assistente de Design Gráfico</h3>
-                  <span className="text-sm text-muted-foreground">
-                    Fev/2024 — Jul/2025
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Clima Rio — Marketing & Varejo · Rio de Janeiro, RJ
-                </p>
-                <ul className="mt-2 text-sm list-disc list-inside space-y-1 text-foreground/80">
-                  <li>
-                    Criação de peças para redes sociais, e-mail marketing e
-                    campanhas internas e comerciais.
-                  </li>
-                  <li>
-                    Materiais de comunicação para PDV alinhados aos objetivos
-                    da marca.
-                  </li>
-                  <li>
-                    Gestão de demandas simultâneas e cumprimento de prazos.
-                  </li>
-                </ul>
-              </StaggerItem>
-
-              <StaggerItem className="relative">
-                <span className="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-muted-foreground/40 ring-4 ring-background" />
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h3 className="font-medium">Auxiliar de Design</h3>
-                  <span className="text-sm text-muted-foreground">
-                    Out/2023 — Fev/2024
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Clima Rio — Marketing & Varejo · Rio de Janeiro, RJ
-                </p>
-                <ul className="mt-2 text-sm list-disc list-inside space-y-1 text-foreground/80">
-                  <li>
-                    Apoio à criação e adaptação de peças para e-mail
-                    marketing, redes sociais, mídia paga e endomarketing.
-                  </li>
-                  <li>
-                    Finalização de materiais para diferentes formatos
-                    digitais e offline.
-                  </li>
-                </ul>
-              </StaggerItem>
-
-              <StaggerItem className="relative">
-                <span className="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-muted-foreground/40 ring-4 ring-background" />
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h3 className="font-medium">
-                    Estagiária de Design Gráfico
-                  </h3>
-                  <span className="text-sm text-muted-foreground">
-                    Dez/2022 — Set/2023
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Clima Rio — Marketing & Varejo · Rio de Janeiro, RJ
-                </p>
-                <p className="mt-2 text-sm text-foreground/80">
-                  Criação de artes para e-mail marketing, mídias sociais e
-                  campanhas de mídia paga em ambiente de varejo.
-                </p>
-              </StaggerItem>
-
-              <StaggerItem className="relative">
-                <span className="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-muted-foreground/40 ring-4 ring-background" />
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h3 className="font-medium">Assistente de Trade Marketing</h3>
-                  <span className="text-sm text-muted-foreground">
-                    Fev/2021 — Mar/2022
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Lojas Caçula · Rio de Janeiro, RJ
-                </p>
-                <ul className="mt-2 text-sm list-disc list-inside space-y-1 text-foreground/80">
-                  <li>
-                    Edição, finalização e fechamento de arquivos para PDV e
-                    catálogos.
-                  </li>
-                  <li>
-                    Tratamento e padronização de imagens para e-commerce e
-                    decorações sazonais em loja.
-                  </li>
-                </ul>
-              </StaggerItem>
-            </Stagger>
-          </FadeIn>
-
-          <FadeIn delay={0.25} className="mt-10">
-            <h2 className="font-display text-2xl font-semibold">
-              Formação
-            </h2>
-            <Stagger className="mt-4 space-y-4">
-              <StaggerItem>
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <div>
-                    <h3 className="font-medium">
-                      Bacharelado em Design Gráfico
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Centro Universitário UniCarioca
+            <Stagger className="mt-4 border-t border-border">
+              {EXPERIENCIA.map((e) => (
+                <StaggerItem key={e.cargo + e.quando}>
+                  <div className="flex justify-between items-baseline gap-4 py-3 border-b border-border">
+                    <p className="text-sm">
+                      <span className="font-medium">{e.cargo}</span>
+                      <span className="text-muted-foreground"> · {e.empresa}</span>
                     </p>
+                    <span className="shrink-0 text-xs text-muted-foreground">{e.quando}</span>
                   </div>
-                  <span className="text-sm text-muted-foreground">2024</span>
-                </div>
-              </StaggerItem>
-              <StaggerItem>
-                <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <div>
-                    <h3 className="font-medium">Informática para Web</h3>
-                    <p className="text-sm text-muted-foreground">FAETEC</p>
-                  </div>
-                  <span className="text-sm text-muted-foreground">2018</span>
-                </div>
-              </StaggerItem>
-            </Stagger>
-          </FadeIn>
-
-          <FadeIn delay={0.3} className="mt-10">
-            <h2 className="font-display text-2xl font-semibold">
-              Cursos relevantes
-            </h2>
-            <ul className="mt-4 space-y-2 text-sm text-foreground/80 list-disc list-inside">
-              <li>Branding e Construção de Marcas — Tera (2025)</li>
-              <li>UX/UI Design com Figma + IA — Udemy (2024)</li>
-              <li>Design Thinking na Prática — Udemy (2021)</li>
-              <li>Design Gráfico — ZION (2021)</li>
-            </ul>
-          </FadeIn>
-
-          <FadeIn delay={0.35} className="mt-10">
-            <h2 className="font-display text-2xl font-semibold">
-              Especialidades
-            </h2>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {[
-                { s: "Identidade visual", c: "bg-primary/10 text-primary" },
-                { s: "Social media", c: "bg-sky/20 text-foreground" },
-                { s: "Key visuals e campanhas", c: "bg-lilac/20 text-foreground" },
-                { s: "Materiais institucionais", c: "bg-muted text-muted-foreground" },
-                { s: "Apresentações", c: "bg-sky/20 text-foreground" },
-                { s: "Layouts digitais", c: "bg-primary/10 text-primary" },
-                { s: "PDV e offline", c: "bg-muted text-muted-foreground" },
-                { s: "E-mail marketing", c: "bg-lilac/20 text-foreground" },
-                { s: "Fechamento para impressão", c: "bg-muted text-muted-foreground" },
-              ].map(({ s, c }) => (
-                <span
-                  key={s}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${c}`}
-                >
-                  {s}
-                </span>
+                </StaggerItem>
               ))}
+            </Stagger>
+
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-muted p-5">
+              <p className="max-w-sm text-sm text-muted-foreground">
+                Cada cargo tem mais detalhe no currículo completo — aqui fica só o essencial.
+              </p>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="print:hidden inline-flex shrink-0 items-center gap-2 rounded-full border border-accent text-accent px-5 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer"
+              >
+                <Download className="h-4 w-4" />
+                Currículo completo (PDF)
+              </button>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.25} className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-8">
+            <div>
+              <h2 className="font-display text-2xl font-semibold">Formação</h2>
+              <Stagger className="mt-4 space-y-4">
+                <StaggerItem>
+                  <div className="flex justify-between items-baseline flex-wrap gap-2">
+                    <div>
+                      <h3 className="font-medium">
+                        Bacharelado em Design Gráfico
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Centro Universitário UniCarioca
+                      </p>
+                    </div>
+                    <span className="text-sm text-muted-foreground">2024</span>
+                  </div>
+                </StaggerItem>
+                <StaggerItem>
+                  <div className="flex justify-between items-baseline flex-wrap gap-2">
+                    <div>
+                      <h3 className="font-medium">Informática para Web</h3>
+                      <p className="text-sm text-muted-foreground">FAETEC</p>
+                    </div>
+                    <span className="text-sm text-muted-foreground">2018</span>
+                  </div>
+                </StaggerItem>
+              </Stagger>
+            </div>
+
+            <div>
+              <h2 className="font-display text-2xl font-semibold">
+                Cursos relevantes
+              </h2>
+              <ul className="mt-4 space-y-2 text-sm text-foreground/80 list-disc list-inside">
+                <li>Branding e Construção de Marcas — Tera (2025)</li>
+                <li>UX/UI Design com Figma + IA — Udemy (2024)</li>
+                <li>Design Thinking na Prática — Udemy (2021)</li>
+                <li>Design Gráfico — ZION (2021)</li>
+              </ul>
             </div>
           </FadeIn>
 
@@ -339,14 +227,42 @@ function SobrePage() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.45} className="mt-10">
-            <h2 className="font-display text-2xl font-semibold">
-              Soft skills
-            </h2>
-            <div className="mt-5 grid gap-x-8 gap-y-4 sm:grid-cols-2">
-              {SOFT_SKILLS.map((skill) => (
-                <SkillScale key={skill.nome} nome={skill.nome} nivel={skill.nivel} />
-              ))}
+          <FadeIn delay={0.45} className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-8">
+            <div>
+              <h2 className="font-display text-2xl font-semibold">
+                Especialidades
+              </h2>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {[
+                  { s: "Identidade visual", c: "bg-primary/10 text-primary" },
+                  { s: "Social media", c: "bg-sky/20 text-foreground" },
+                  { s: "Key visuals e campanhas", c: "bg-lilac/20 text-foreground" },
+                  { s: "Materiais institucionais", c: "bg-muted text-muted-foreground" },
+                  { s: "Apresentações", c: "bg-sky/20 text-foreground" },
+                  { s: "Layouts digitais", c: "bg-primary/10 text-primary" },
+                  { s: "PDV e offline", c: "bg-muted text-muted-foreground" },
+                  { s: "E-mail marketing", c: "bg-lilac/20 text-foreground" },
+                  { s: "Fechamento para impressão", c: "bg-muted text-muted-foreground" },
+                ].map(({ s, c }) => (
+                  <span
+                    key={s}
+                    className={`px-3 py-1 rounded-full text-sm font-medium ${c}`}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h2 className="font-display text-2xl font-semibold">
+                Soft skills
+              </h2>
+              <div className="mt-4 space-y-4">
+                {SOFT_SKILLS.map((skill) => (
+                  <SkillScale key={skill.nome} nome={skill.nome} nivel={skill.nivel} />
+                ))}
+              </div>
             </div>
           </FadeIn>
         </div>

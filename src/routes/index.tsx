@@ -4,6 +4,16 @@ import { Link } from "@tanstack/react-router";
 import { FadeIn } from "../components/motion-primitives";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Mari Ventura — Designer Gráfica" },
+      {
+        name: "description",
+        content:
+          "Design gráfico com propósito e sensibilidade. Identidade visual, branding e criação digital de Marianna Ventura.",
+      },
+    ],
+  }),
   component: Index,
 });
 
