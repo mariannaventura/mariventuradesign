@@ -18,10 +18,6 @@ export default defineConfig({
   nitro: false,
 
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error
-    // wrapper). This matches what default resolution would pick anyway.
-    server: { entry: "server" },
-
     // TanStack's own prerenderer — nitro is not involved. It boots vite.preview(),
     // which serves real SSR from dist/server/server.js, then fetches every page below
     // and writes the HTML into dist/client.
