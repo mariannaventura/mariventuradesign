@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -38,6 +38,19 @@ export function Nav() {
     };
   }, [open]);
 
+  // O menu em tela cheia só existe no mobile. Se a janela crescer para desktop com
+  // ele aberto, fecha — senão a barra fica sem fundo e com a marca na cor errada.
+  useEffect(() => {
+    if (!open) return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = () => {
+      if (mq.matches) setOpen(false);
+    };
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [open]);
+
   // Esc fecha e devolve o foco ao botão que abriu.
   useEffect(() => {
     if (!open) return;
@@ -65,14 +78,20 @@ export function Nav() {
     ? "backdrop-blur-md bg-black/20 border-b border-white/10"
     : "backdrop-blur-md bg-white/40 border-b border-black/10";
 
-  // Aberto, o menu vira a tela inteira, então precisa de fundo opaco para leitura.
-  // Não usa Ink Violet como fundo: pela One Accent Rule ele só preenche área grande
-  // no hero. Nas rotas claras usa a base da página; no hero, o roxo mais profundo
-  // do próprio degradê.
-  const overlayBg = isDarkBg ? "bg-[#180037]" : "bg-background";
+  // Mesmo vidro, escopado em md+. Fica aplicado mesmo com o menu aberto, para que
+  // a barra do desktop nunca dependa do listener de breakpoint ter rodado.
+  const glassMd = isDarkBg
+    ? "md:backdrop-blur-md md:bg-black/20 md:border-b md:border-white/10"
+    : "md:backdrop-blur-md md:bg-white/40 md:border-b md:border-black/10";
 
-  const brandLogo = isDarkBg ? "/images/wordmark-white.png" : "/images/wordmark-purple.png";
-  const barColor = isDarkBg ? "bg-white" : "bg-black";
+  // A barra fechada adapta a cor porque é translúcida e fica POR CIMA do conteúdo:
+  // preto sobre o hero roxo sumiria. O menu aberto não tem esse problema — ele é
+  // opaco e substitui a página, então não há fundo a que se adaptar. Adaptar faria
+  // o único elemento presente em todas as páginas mudar de identidade conforme a
+  // rota (inclusive trocando a marca de branca para roxa). Por isso ele tem uma cor
+  // fixa, e a marca e o botão acompanham o menu enquanto ele está aberto.
+  const brandLogo = isDarkBg || open ? "/images/wordmark-white.png" : "/images/wordmark-purple.png";
+  const barColor = isDarkBg || open ? "bg-white" : "bg-black";
 
   return (
     <header
@@ -80,7 +99,7 @@ export function Nav() {
         "fixed top-0 left-0 right-0 z-50 flex flex-col print:hidden",
         // `max-md:` garante que o modo tela cheia nunca vaze para o desktop, mesmo
         // se a janela for redimensionada com o menu aberto.
-        open ? cn("max-md:bottom-0", overlayBg, "md:border-b") : glass,
+        open ? cn("max-md:bottom-0 max-md:bg-[#180037]", glassMd) : glass,
       )}
     >
       <nav className="max-w-6xl mx-auto flex w-full shrink-0 items-center justify-between px-6 py-4">
@@ -144,60 +163,58 @@ export function Nav() {
         </button>
       </nav>
 
-      {/* Menu em tela cheia — os itens ocupam todo o espaço abaixo da marca */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            // AnimatePresence precisa de uma key estável no filho para saber que ele
-            // entrou/saiu; sem ela o nó fica preso no DOM e nem entra nem sai.
-            key="menu-mobile"
-            id="menu-mobile"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu de navegação"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.2, ease: EASE }}
-            className="md:hidden flex flex-1 items-center justify-center overflow-y-auto px-6 pb-24"
+      {/* Menu em tela cheia — os itens ocupam todo o espaço abaixo da marca.
+          Sem AnimatePresence de propósito: a saída precisa ser instantânea. Como o
+          fundo e a marca voltam à cor da rota no mesmo instante em que `open` vira
+          false, qualquer item ainda desaparecendo apareceria como texto branco sobre
+          fundo claro. Entrada animada, saída seca — que também é o que dá sensação
+          de resposta imediata ao toque. */}
+      {open && (
+        <div
+          id="menu-mobile"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu de navegação"
+          className="md:hidden flex flex-1 items-center justify-center overflow-y-auto px-6 pb-24"
+        >
+          <motion.ul
+            className="flex w-full flex-col items-center gap-1"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: reduceMotion ? 0 : 0.06, delayChildren: 0.05 },
+              },
+            }}
           >
-            <motion.ul
-              className="flex w-full flex-col items-center gap-1"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.06, delayChildren: 0.05 } },
-              }}
-            >
-              {links.map((l) => (
-                <motion.li
-                  key={l.to}
-                  className="w-full"
-                  variants={{
-                    hidden: { opacity: 0, y: reduceMotion ? 0 : 24 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: reduceMotion ? 0 : 0.5, ease: EASE },
-                    },
-                  }}
+            {links.map((l) => (
+              <motion.li
+                key={l.to}
+                className="w-full"
+                variants={{
+                  hidden: { opacity: 0, y: reduceMotion ? 0 : 24 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: reduceMotion ? 0 : 0.5, ease: EASE },
+                  },
+                }}
+              >
+                <Link
+                  to={l.to}
+                  className="block rounded-lg py-3 text-center font-display text-4xl font-semibold tracking-[-0.02em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  inactiveProps={{ className: "text-white hover:text-sky" }}
+                  activeProps={{ className: "text-sky" }}
+                  activeOptions={{ exact: true }}
                 >
-                  <Link
-                    to={l.to}
-                    className="block rounded-lg py-3 text-center font-display text-4xl font-semibold tracking-[-0.02em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                    inactiveProps={{ className: cn(baseText, hoverText) }}
-                    activeProps={{ className: activeColor }}
-                    activeOptions={{ exact: true }}
-                  >
-                    {l.label}
-                  </Link>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  {l.label}
+                </Link>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      )}
     </header>
   );
 }
