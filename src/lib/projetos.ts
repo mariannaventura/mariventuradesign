@@ -120,9 +120,9 @@ export const PROJETOS: Projeto[] = [
           "Como parte da mobilização para viabilizar a viagem a Berlim, criei um post para divulgar uma turma online da Lety, ampliando a captação de renda além do mídia kit e dos workshops presenciais.",
         post: {
           images: [
-            "/images/post-aula-terca_01.png",
-            "/images/post-aula-terca_02.png",
-            "/images/post-aula-terca_03.png",
+            "/images/post-aula-terca_01.jpg",
+            "/images/post-aula-terca_02.jpg",
+            "/images/post-aula-terca_03.jpg",
           ],
           autor: "Letycia Rangel",
           legenda:
