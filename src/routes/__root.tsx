@@ -124,7 +124,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Nav />
-      <main className="pt-16">
+      {/* pt-16 abre espaço para a barra fixa; na impressão a barra some, então o
+          espaço viraria uma margem morta no topo do PDF. */}
+      <main className="pt-16 print:pt-0">
         <Outlet />
       </main>
     </QueryClientProvider>

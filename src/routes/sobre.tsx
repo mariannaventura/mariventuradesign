@@ -34,38 +34,104 @@ const SOFT_SKILLS = [
   { nome: "Adaptabilidade a diferentes contextos de marca", nivel: 5 },
 ];
 
+const ESPECIALIDADES = [
+  { s: "Identidade visual", c: "bg-primary/10 text-primary" },
+  { s: "Social media", c: "bg-sky/20 text-foreground" },
+  { s: "Key visuals e campanhas", c: "bg-lilac/20 text-foreground" },
+  { s: "Materiais institucionais", c: "bg-muted text-muted-foreground" },
+  { s: "Apresentações", c: "bg-sky/20 text-foreground" },
+  { s: "Layouts digitais", c: "bg-primary/10 text-primary" },
+  { s: "PDV e offline", c: "bg-muted text-muted-foreground" },
+  { s: "E-mail marketing", c: "bg-lilac/20 text-foreground" },
+  { s: "Fechamento para impressão", c: "bg-muted text-muted-foreground" },
+];
+
+const FORMACAO = [
+  { curso: "Bacharelado em Design Gráfico", instituicao: "Centro Universitário UniCarioca", ano: "2024" },
+  { curso: "Informática para Web", instituicao: "FAETEC", ano: "2018" },
+];
+
+const CURSOS = [
+  "Branding e Construção de Marcas — Tera (2025)",
+  "UX/UI Design com Figma + IA — Udemy (2024)",
+  "Design Thinking na Prática — Udemy (2021)",
+  "Design Gráfico — ZION (2021)",
+];
+
+// `atividades` alimenta só a versão impressa do currículo; a tela mostra apenas
+// cargo + empresa + período para não abrir a página com um muro de texto.
 const EXPERIENCIA = [
   {
     cargo: "Estrategista de Marca e Conteúdo",
     empresa: "Festival Afrontosas",
+    local: "Projeto colaborativo · Remoto",
     quando: "Jun/2025 — Mai/2026",
+    atividades: [
+      "Direção de arte e criação de peças para Instagram (feed, carrossel e stories), mantendo consistência visual da marca.",
+      "Gestão de calendário editorial e execução de 3 a 4 publicações semanais, com publicação diária no pré-evento.",
+      "Edição de vídeos curtos e apoio à comunicação de parcerias com marcas.",
+    ],
   },
   {
     cargo: "Designer Gráfica Júnior",
-    empresa: "Clima Rio",
+    empresa: "Clima Rio — Marketing & Varejo",
+    local: "Rio de Janeiro, RJ",
     quando: "Jul/2025 — Out/2025",
+    atividades: [
+      "Desenvolvimento de peças de campanha institucionais e promocionais para canais digitais e offline.",
+      "Criação para redes sociais, e-mail marketing, PDV, endomarketing e mais de 12 eventos.",
+      "Finalização e fechamento de arquivos para impressão, incluindo o catálogo 2025/2026.",
+      "Padronização visual de mais de 10 lojas físicas.",
+      "Apoio ao e-commerce na VTEX e fluxos automatizados de e-mail na Connectif.",
+    ],
   },
   {
     cargo: "Assistente de Design Gráfico",
-    empresa: "Clima Rio",
+    empresa: "Clima Rio — Marketing & Varejo",
+    local: "Rio de Janeiro, RJ",
     quando: "Fev/2024 — Jul/2025",
+    atividades: [
+      "Criação de peças para redes sociais, e-mail marketing e campanhas internas e comerciais.",
+      "Materiais de comunicação para PDV alinhados aos objetivos da marca.",
+      "Gestão de demandas simultâneas e cumprimento de prazos.",
+    ],
   },
   {
     cargo: "Auxiliar de Design",
-    empresa: "Clima Rio",
+    empresa: "Clima Rio — Marketing & Varejo",
+    local: "Rio de Janeiro, RJ",
     quando: "Out/2023 — Fev/2024",
+    atividades: [
+      "Apoio à criação e adaptação de peças para e-mail marketing, redes sociais, mídia paga e endomarketing.",
+      "Finalização de materiais para diferentes formatos digitais e offline.",
+    ],
   },
   {
     cargo: "Estagiária de Design Gráfico",
-    empresa: "Clima Rio",
+    empresa: "Clima Rio — Marketing & Varejo",
+    local: "Rio de Janeiro, RJ",
     quando: "Dez/2022 — Set/2023",
+    atividades: [
+      "Criação de artes para e-mail marketing, mídias sociais e campanhas de mídia paga em ambiente de varejo.",
+    ],
   },
   {
     cargo: "Assistente de Trade Marketing",
     empresa: "Lojas Caçula",
+    local: "Rio de Janeiro, RJ",
     quando: "Fev/2021 — Mar/2022",
+    atividades: [
+      "Edição, finalização e fechamento de arquivos para PDV e catálogos.",
+      "Tratamento e padronização de imagens para e-commerce e decorações sazonais em loja.",
+    ],
   },
 ];
+
+const RESUMO =
+  "Designer gráfica com formação em Design e experiência em criação e desdobramento de peças para campanhas, redes sociais, materiais institucionais, PDV e e-commerce. Tenho vivência em manter consistência de identidade visual em múltiplos canais e lidar com demandas simultâneas em ambiente de varejo. Domínio do Pacote Adobe (Photoshop, Illustrator, InDesign), Figma e Canva. Noções de UX/UI e ferramentas de IA aplicadas ao design.";
+
+const CONTATO = "Nova Iguaçu – RJ · mariannaventura08@hotmail.com";
+const CARGO_TITULO = "Designer Gráfica · Identidade Visual & Criação Digital e Offline";
 
 const DESTAQUES = [
   { numero: String(PROJETOS.length), label: "projetos no portfólio" },
@@ -89,10 +155,20 @@ export const Route = createFileRoute("/sobre")({
 
 function SobrePage() {
   return (
-    <section className="max-w-5xl mx-auto px-6 pt-32 pb-20 print:pt-8 print:pb-8">
+    <>
+      <VersaoTela />
+      <CurriculoImpresso />
+    </>
+  );
+}
+
+/** O que o visitante vê no site: perfil primeiro, currículo resumido. */
+function VersaoTela() {
+  return (
+    <section className="max-w-5xl mx-auto px-6 pt-32 pb-20 print:hidden">
       <div className="grid md:grid-cols-[280px_1fr] gap-10">
         <FadeIn>
-          <div className="overflow-hidden rounded-lg shadow-lg sticky top-28 print:static print:shadow-none">
+          <div className="overflow-hidden rounded-lg shadow-lg sticky top-28">
             <img
               src="/images/marianna-foto.jpg"
               alt="Marianna Ventura"
@@ -106,15 +182,11 @@ function SobrePage() {
             <h1 className="text-4xl md:text-5xl font-display font-semibold">
               Marianna Ventura
             </h1>
-            <p className="mt-2 text-lg text-primary font-medium">
-              Designer Gráfica · Identidade Visual & Criação Digital e Offline
-            </p>
+            <p className="mt-2 text-lg text-primary font-medium">{CARGO_TITULO}</p>
             <p className="mt-4 border-l-2 border-sky pl-4 font-display italic text-xl leading-relaxed">
               Design gráfico com propósito e sensibilidade.
             </p>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Nova Iguaçu – RJ · mariannaventura08@hotmail.com
-            </p>
+            <p className="mt-3 text-sm text-muted-foreground">{CONTATO}</p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               {DESTAQUES.map((d) => (
@@ -127,9 +199,7 @@ function SobrePage() {
           </FadeIn>
 
           <FadeIn delay={0.15} className="mt-10">
-            <h2 className="font-display text-2xl font-semibold">
-              Experiência
-            </h2>
+            <h2 className="font-display text-2xl font-semibold">Experiência</h2>
             <Stagger className="mt-4 border-t border-border">
               {EXPERIENCIA.map((e) => (
                 <StaggerItem key={e.cargo + e.quando}>
@@ -151,7 +221,7 @@ function SobrePage() {
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="print:hidden inline-flex shrink-0 items-center gap-2 rounded-full border border-accent text-accent px-5 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-full border border-accent text-accent px-5 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer"
               >
                 <Download className="h-4 w-4" />
                 Currículo completo (PDF)
@@ -163,48 +233,32 @@ function SobrePage() {
             <div>
               <h2 className="font-display text-2xl font-semibold">Formação</h2>
               <Stagger className="mt-4 space-y-4">
-                <StaggerItem>
-                  <div className="flex justify-between items-baseline flex-wrap gap-2">
-                    <div>
-                      <h3 className="font-medium">
-                        Bacharelado em Design Gráfico
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        Centro Universitário UniCarioca
-                      </p>
+                {FORMACAO.map((f) => (
+                  <StaggerItem key={f.curso}>
+                    <div className="flex justify-between items-baseline flex-wrap gap-2">
+                      <div>
+                        <h3 className="font-medium">{f.curso}</h3>
+                        <p className="text-sm text-muted-foreground">{f.instituicao}</p>
+                      </div>
+                      <span className="text-sm text-muted-foreground">{f.ano}</span>
                     </div>
-                    <span className="text-sm text-muted-foreground">2024</span>
-                  </div>
-                </StaggerItem>
-                <StaggerItem>
-                  <div className="flex justify-between items-baseline flex-wrap gap-2">
-                    <div>
-                      <h3 className="font-medium">Informática para Web</h3>
-                      <p className="text-sm text-muted-foreground">FAETEC</p>
-                    </div>
-                    <span className="text-sm text-muted-foreground">2018</span>
-                  </div>
-                </StaggerItem>
+                  </StaggerItem>
+                ))}
               </Stagger>
             </div>
 
             <div>
-              <h2 className="font-display text-2xl font-semibold">
-                Cursos relevantes
-              </h2>
+              <h2 className="font-display text-2xl font-semibold">Cursos relevantes</h2>
               <ul className="mt-4 space-y-2 text-sm text-foreground/80 list-disc list-inside">
-                <li>Branding e Construção de Marcas — Tera (2025)</li>
-                <li>UX/UI Design com Figma + IA — Udemy (2024)</li>
-                <li>Design Thinking na Prática — Udemy (2021)</li>
-                <li>Design Gráfico — ZION (2021)</li>
+                {CURSOS.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
               </ul>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.4} className="mt-10">
-            <h2 className="font-display text-2xl font-semibold">
-              Ferramentas
-            </h2>
+            <h2 className="font-display text-2xl font-semibold">Ferramentas</h2>
             <div className="mt-5 flex flex-wrap gap-x-4 gap-y-5">
               {FERRAMENTAS.map((f) => (
                 <ToolBadge
@@ -229,25 +283,10 @@ function SobrePage() {
 
           <FadeIn delay={0.45} className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-8">
             <div>
-              <h2 className="font-display text-2xl font-semibold">
-                Especialidades
-              </h2>
+              <h2 className="font-display text-2xl font-semibold">Especialidades</h2>
               <div className="mt-4 flex flex-wrap gap-2">
-                {[
-                  { s: "Identidade visual", c: "bg-primary/10 text-primary" },
-                  { s: "Social media", c: "bg-sky/20 text-foreground" },
-                  { s: "Key visuals e campanhas", c: "bg-lilac/20 text-foreground" },
-                  { s: "Materiais institucionais", c: "bg-muted text-muted-foreground" },
-                  { s: "Apresentações", c: "bg-sky/20 text-foreground" },
-                  { s: "Layouts digitais", c: "bg-primary/10 text-primary" },
-                  { s: "PDV e offline", c: "bg-muted text-muted-foreground" },
-                  { s: "E-mail marketing", c: "bg-lilac/20 text-foreground" },
-                  { s: "Fechamento para impressão", c: "bg-muted text-muted-foreground" },
-                ].map(({ s, c }) => (
-                  <span
-                    key={s}
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${c}`}
-                  >
+                {ESPECIALIDADES.map(({ s, c }) => (
+                  <span key={s} className={`px-3 py-1 rounded-full text-sm font-medium ${c}`}>
                     {s}
                   </span>
                 ))}
@@ -255,9 +294,7 @@ function SobrePage() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl font-semibold">
-                Soft skills
-              </h2>
+              <h2 className="font-display text-2xl font-semibold">Soft skills</h2>
               <div className="mt-4 space-y-4">
                 {SOFT_SKILLS.map((skill) => (
                   <SkillScale key={skill.nome} nome={skill.nome} nivel={skill.nivel} />
@@ -267,6 +304,96 @@ function SobrePage() {
           </FadeIn>
         </div>
       </div>
+    </section>
+  );
+}
+
+/**
+ * O PDF que sai do botão "Currículo completo": versão detalhada, sem foto e sem
+ * os elementos de site (destaques, CTA). Só existe no @media print — os
+ * componentes coloridos da tela não sobrevivem à impressão, já que navegador
+ * não imprime fundo por padrão.
+ */
+function CurriculoImpresso() {
+  return (
+    <section className="hidden print:block mx-auto max-w-3xl px-8 py-6 text-black">
+      <header>
+        <h1 className="font-display text-3xl font-semibold">Marianna Ventura</h1>
+        <p className="mt-1 text-sm font-medium">{CARGO_TITULO}</p>
+        <p className="mt-1 text-sm">{CONTATO}</p>
+        <p className="mt-3 text-[11px] leading-relaxed">{RESUMO}</p>
+      </header>
+
+      <PrintSection titulo="Experiência">
+        <div className="space-y-4">
+          {EXPERIENCIA.map((e) => (
+            <article key={e.cargo + e.quando} className="break-inside-avoid">
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="text-[13px] font-semibold">{e.cargo}</h3>
+                <span className="shrink-0 text-[11px]">{e.quando}</span>
+              </div>
+              <p className="text-[11px] italic">
+                {e.empresa} · {e.local}
+              </p>
+              <ul className="mt-1 list-disc space-y-0.5 pl-4 text-[11px] leading-snug">
+                {e.atividades.map((a) => (
+                  <li key={a}>{a}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </PrintSection>
+
+      <PrintSection titulo="Formação">
+        <ul className="space-y-1 text-[11px]">
+          {FORMACAO.map((f) => (
+            <li key={f.curso} className="flex items-baseline justify-between gap-4">
+              <span>
+                <strong className="font-semibold">{f.curso}</strong> — {f.instituicao}
+              </span>
+              <span className="shrink-0">{f.ano}</span>
+            </li>
+          ))}
+        </ul>
+      </PrintSection>
+
+      <PrintSection titulo="Cursos relevantes">
+        <ul className="list-disc space-y-0.5 pl-4 text-[11px]">
+          {CURSOS.map((c) => (
+            <li key={c}>{c}</li>
+          ))}
+        </ul>
+      </PrintSection>
+
+      <PrintSection titulo="Especialidades">
+        <p className="text-[11px] leading-snug">{ESPECIALIDADES.map((e) => e.s).join(" · ")}</p>
+      </PrintSection>
+
+      <PrintSection titulo="Ferramentas">
+        <p className="text-[11px] leading-snug">
+          {FERRAMENTAS.map((f) => f.nome).join(" · ")} · IA aplicada ao design
+        </p>
+      </PrintSection>
+
+      <PrintSection titulo="Soft skills">
+        <ul className="list-disc space-y-0.5 pl-4 text-[11px]">
+          {SOFT_SKILLS.map((s) => (
+            <li key={s.nome}>{s.nome}</li>
+          ))}
+        </ul>
+      </PrintSection>
+    </section>
+  );
+}
+
+function PrintSection({ titulo, children }: { titulo: string; children: React.ReactNode }) {
+  return (
+    <section className="mt-5 break-inside-avoid">
+      <h2 className="mb-1.5 border-b border-black/30 pb-0.5 font-display text-base font-semibold">
+        {titulo}
+      </h2>
+      {children}
     </section>
   );
 }
