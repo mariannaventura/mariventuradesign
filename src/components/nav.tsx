@@ -201,19 +201,30 @@ export function Nav() {
                   },
                 }}
               >
-                {/* Hover e selecionado precisam ser distinguíveis, então mudam
-                    canais diferentes: selecionado muda a COR do texto (lilás),
-                    hover/toque muda a SUPERFÍCIE (fundo). Se os dois mexessem na
-                    cor, um item selecionado sob o cursor viraria a mesma coisa que
-                    um item qualquer sob o cursor. */}
+                {/* Selecionado e hover mudam canais diferentes, senão um item sob o
+                    cursor viraria a mesma coisa que o item atual: selecionado muda a
+                    COR da palavra (lilás), hover/toque desenha um TRAÇO sob ela.
+                    O link ocupa a linha inteira (alvo de toque), mas o traço fica no
+                    span, para acompanhar a largura da palavra e não da linha. */}
                 <Link
                   to={l.to}
-                  className="block rounded-lg py-3 text-center font-display text-4xl font-semibold tracking-[-0.02em] transition-colors hover:bg-white/10 active:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  className="group block py-3 text-center font-display text-4xl font-semibold tracking-[-0.02em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   inactiveProps={{ className: "text-white" }}
                   activeProps={{ className: "text-lilac" }}
                   activeOptions={{ exact: true }}
                 >
-                  {l.label}
+                  <span className="relative inline-block">
+                    {l.label}
+                    <span
+                      aria-hidden
+                      className={cn(
+                        "absolute inset-x-0 -bottom-0.5 h-0.5 origin-center rounded-full bg-current",
+                        "scale-x-0 transition-transform duration-300 ease-out",
+                        "group-hover:scale-x-100 group-active:scale-x-100",
+                        reduceMotion && "transition-none",
+                      )}
+                    />
+                  </span>
                 </Link>
               </motion.li>
             ))}
