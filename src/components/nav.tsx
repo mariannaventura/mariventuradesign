@@ -201,11 +201,16 @@ export function Nav() {
                   },
                 }}
               >
+                {/* Hover e selecionado precisam ser distinguíveis, então mudam
+                    canais diferentes: selecionado muda a COR do texto (lilás),
+                    hover/toque muda a SUPERFÍCIE (fundo). Se os dois mexessem na
+                    cor, um item selecionado sob o cursor viraria a mesma coisa que
+                    um item qualquer sob o cursor. */}
                 <Link
                   to={l.to}
-                  className="block rounded-lg py-3 text-center font-display text-4xl font-semibold tracking-[-0.02em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                  inactiveProps={{ className: "text-white hover:text-sky" }}
-                  activeProps={{ className: "text-sky" }}
+                  className="block rounded-lg py-3 text-center font-display text-4xl font-semibold tracking-[-0.02em] transition-colors hover:bg-white/10 active:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  inactiveProps={{ className: "text-white" }}
+                  activeProps={{ className: "text-lilac" }}
                   activeOptions={{ exact: true }}
                 >
                   {l.label}
