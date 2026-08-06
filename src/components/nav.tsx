@@ -203,9 +203,10 @@ export function Nav() {
               >
                 {/* Selecionado e hover mudam canais diferentes, senão um item sob o
                     cursor viraria a mesma coisa que o item atual: selecionado muda a
-                    COR da palavra (lilás), hover/toque desenha um TRAÇO sob ela.
-                    O link ocupa a linha inteira (alvo de toque), mas o traço fica no
-                    span, para acompanhar a largura da palavra e não da linha. */}
+                    COR da palavra (lilás), hover/toque muda o TAMANHO dela.
+                    O link ocupa a linha inteira (alvo de toque), mas quem escala é o
+                    span interno — escalar o link não teria efeito visível, já que ele
+                    não tem fundo, e ainda mexeria no alvo de toque. */}
                 <Link
                   to={l.to}
                   className="group block py-3 text-center font-display text-4xl font-semibold tracking-[-0.02em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
@@ -213,17 +214,13 @@ export function Nav() {
                   activeProps={{ className: "text-lilac" }}
                   activeOptions={{ exact: true }}
                 >
-                  <span className="relative inline-block">
+                  <span
+                    className={cn(
+                      "inline-block transition-transform duration-200 ease-out",
+                      !reduceMotion && "group-hover:scale-105 group-active:scale-105",
+                    )}
+                  >
                     {l.label}
-                    <span
-                      aria-hidden
-                      className={cn(
-                        "absolute inset-x-0 -bottom-0.5 h-0.5 origin-center rounded-full bg-current",
-                        "scale-x-0 transition-transform duration-300 ease-out",
-                        "group-hover:scale-x-100 group-active:scale-x-100",
-                        reduceMotion && "transition-none",
-                      )}
-                    />
                   </span>
                 </Link>
               </motion.li>
