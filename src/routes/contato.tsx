@@ -37,7 +37,11 @@ function ContatoPage() {
             {/* Secundário derivado do próprio texto da superfície, não cinza:
                 cinza sobre o azul-claro perde contraste e sujeita a cor. */}
             <p className="text-sm text-sky-foreground/75">Email</p>
-            <p className="mt-1 font-display text-xl break-all">mariannaventura08@hotmail.com</p>
+            {/* O <wbr /> dá a única oportunidade de quebra, no @. Sem ele o endereço
+                não cabe em 375px; com break-all ele quebrava em "hotmai / l.com". */}
+            <p className="mt-1 font-display text-xl">
+              mariannaventura08@<wbr />hotmail.com
+            </p>
           </a>
         </StaggerItem>
         <StaggerItem>
