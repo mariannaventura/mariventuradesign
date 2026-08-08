@@ -3,20 +3,32 @@ import { ArrowLeft } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem } from "../components/motion-primitives";
 import { GalleryCarousel } from "../components/gallery-carousel";
 import { InstagramPost } from "../components/instagram-post";
-import { PROJETOS } from "../lib/projetos";
+import { PROJETOS, type Projeto } from "../lib/projetos";
+
+// Tipo de retorno explícito: dentro do objeto da rota o `head` é declarado antes do
+// `loader`, então sem esta anotação o TypeScript infere `loaderData` como `never` e
+// tudo que depende dele (inclusive `projeto.processo`) vira `any`.
+function carregarProjeto({ params }: { params: { id: string } }): { projeto: Projeto } {
+  const projeto = PROJETOS.find((t) => String(t.id) === params.id);
+  if (!projeto) throw notFound();
+  return { projeto };
+}
 
 export const Route = createFileRoute("/projetos_/$id")({
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.projeto.titulo ?? "Projeto"} — Portfólio` },
-      { name: "description", content: "Detalhamento do projeto." },
+      { title: `${loaderData?.projeto.titulo ?? "Projeto"} — Mari Ventura` },
+      {
+        name: "description",
+        // As 11 páginas de projeto compartilhavam "Detalhamento do projeto." — são
+        // justamente as que mais recebem link direto.
+        content:
+          loaderData?.projeto.contexto?.slice(0, 155).replace(/\s+\S*$/, "") ??
+          "Detalhamento do projeto.",
+      },
     ],
   }),
-  loader: ({ params }) => {
-    const projeto = PROJETOS.find((t) => String(t.id) === params.id);
-    if (!projeto) throw notFound();
-    return { projeto };
-  },
+  loader: carregarProjeto,
   component: ProjetoDetalhe,
   notFoundComponent: () => (
     <div className="max-w-3xl mx-auto px-6 py-32 text-center">
@@ -74,7 +86,11 @@ function ProjetoDetalhe() {
         {projeto.capa ? (
           <img
             src={projeto.capa}
-            alt={`Capa — ${projeto.titulo}`}
+            // Sem capaAlt o texto repetiria o h1 logo abaixo; nesse caso é melhor
+            // deixar vazio e não fazer o leitor de tela ouvir o título duas vezes.
+            alt={projeto.capaAlt ?? ""}
+            // É a maior imagem da página e a primeira a aparecer: carrega logo.
+            decoding="async"
             className={`w-full aspect-[1754/1241] rounded-lg shadow-lg ${
               projeto.capaContain ? "object-contain bg-muted" : "object-cover"
             }`}
@@ -166,7 +182,12 @@ function ProjetoDetalhe() {
                         </div>
                       )}
                       {item.galeria && (
-                        <GalleryCarousel images={item.galeria} altPrefix={item.titulo} />
+                        <GalleryCarousel
+                          images={item.galeria}
+                          altPrefix={item.titulo}
+                          aspect={item.galeriaAspect}
+                          fit={item.galeriaFit}
+                        />
                       )}
                       {item.post && (
                         <InstagramPost
@@ -175,11 +196,17 @@ function ProjetoDetalhe() {
                           legenda={item.post.legenda}
                         />
                       )}
-                      {!item.figmaEmbed && !item.galeria && !item.post && item.placeholderHint && (
-                        <div className="image-placeholder aspect-[4/5] p-6">
-                          [ Espaço para mídia — {item.placeholderHint} ]
-                        </div>
-                      )}
+                      {/* Lembrete de produção, só em desenvolvimento. Já foi ao ar como
+                          texto visível para o visitante — nunca mais. */}
+                      {import.meta.env.DEV &&
+                        !item.figmaEmbed &&
+                        !item.galeria &&
+                        !item.post &&
+                        item.placeholderHint && (
+                          <div className="image-placeholder aspect-[4/5] p-6">
+                            [ Espaço para mídia — {item.placeholderHint} ]
+                          </div>
+                        )}
                     </div>
                   )}
                   <div className={temMidia ? "w-full md:flex-1" : ""}>

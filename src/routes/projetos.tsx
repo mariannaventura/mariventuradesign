@@ -68,7 +68,7 @@ function ProjetosPage() {
 
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence mode="popLayout">
-          {filtrados.map((t) => (
+          {filtrados.map((t, i) => (
             <motion.div
               key={t.id}
               layout
@@ -91,7 +91,12 @@ function ProjetosPage() {
                     >
                       <img
                         src={t.capa}
-                        alt={`Capa — ${t.titulo}`}
+                        // O título do projeto está logo abaixo, no h3: repetir aqui
+                        // faria o leitor de tela anunciar duas vezes.
+                        alt=""
+                        // A grade tem 11 capas; só as primeiras aparecem sem rolagem.
+                        loading={i < 3 ? "eager" : "lazy"}
+                        decoding="async"
                         className={`w-full h-full ${t.capaContain ? "object-contain" : "object-cover"}`}
                       />
                     </div>

@@ -1,9 +1,20 @@
+/**
+ * Uma string usa a descrição genérica ("título — imagem 2"), que não diz nada a
+ * quem usa leitor de tela nem ao buscador. Prefira o objeto e descreva o que a
+ * imagem mostra: num portfólio, a imagem É o argumento.
+ */
+export type GaleriaItem = string | { src: string; alt: string };
+
 export type ProcessoItem = {
   titulo: string;
   texto: string;
   figmaEmbed?: string;
   embedAspect?: string;
-  galeria?: string[];
+  galeria?: GaleriaItem[];
+  /** Proporção da galeria. Peças de feed são "4/5"; fotos e capas, "16/9". */
+  galeriaAspect?: string;
+  /** "contain" quando a galeria traz peças gráficas que não podem ser recortadas. */
+  galeriaFit?: "cover" | "contain";
   post?: {
     images: string[];
     autor: string;
@@ -18,6 +29,8 @@ export type Projeto = {
   cliente: string;
   tags: string[];
   capa?: string;
+  /** Descreve o que a capa mostra. Sem isto o alt repete o título que já está ao lado. */
+  capaAlt?: string;
   capaContain?: boolean;
   contexto?: string;
   problema?: string;
@@ -35,7 +48,11 @@ export const PROJETOS: Projeto[] = [
     titulo: "Festival Afrontosas",
     cliente: "Coletivo Afrontosas",
     tags: ["Branding", "Identidade Visual", "Digital"],
-    capa: "/images/folha-de-rosto-festival-afrontosas.png",
+    // A capa era a folha de rosto — um documento, não a peça. A camiseta vestida
+    // mostra a identidade funcionando no mundo real, que é o argumento do projeto.
+    capa: "/images/festival/camisa.jpg",
+    capaAlt:
+      "Três pessoas sorrindo lado a lado, vestindo a camiseta marrom do Festival Afrontosas com o logotipo em amarelo entre duas faixas de padrão geométrico.",
     contexto:
       "O Festival Afrontosas nasceu como um braço cultural do Coletivo Afrontosas — um coletivo que existe para afrontar, questionar e ocupar espaços. O festival carrega esse mesmo espírito: é um evento cultural voltado para pessoas pretas, pardas e indígenas, realizado com financiamento público e pensado para celebrar e amplificar essas existências.",
     problema:
@@ -49,22 +66,96 @@ export const PROJETOS: Projeto[] = [
         titulo: "Conceito e Paleta",
         texto:
           "O conceito partiu da geometria já presente no Coletivo Afrontosas e ganhou cor e temperatura. Escolhi amarelo, vermelho e laranja — cores quentes que remetem ao movimento e ao calor do estado, conhecido pelas praias — para dar ao festival uma identidade própria e vibrante. No lugar do branco, entrou bege, marrom e preto: uma paleta que representa e acolhe o público do evento.",
-        placeholderHint:
-          "Moodboard ou estudo de cor mostrando a paleta final (amarelo, vermelho, laranja, bege, marrom, preto), e/ou a logomarca do festival isolada — a peça que melhor resume essa decisão de conceito.",
+        galeria: [
+          {
+            src: "/images/festival/folha-de-rosto.jpg",
+            alt: "Folha de rosto do Festival Afrontosas: o logotipo em letras amarelas sobre fundo marrom escuro, entre duas faixas de padrão geométrico em amarelo, laranja e vermelho.",
+          },
+        ],
+        // Proporção nativa da peça: qualquer moldura diferente cortaria a cercadura
+        // geométrica, que é justamente o que este bloco tem a mostrar.
+        galeriaAspect: "1754/1241",
       },
       {
         titulo: "Aplicações — do digital ao físico",
         texto:
-          "As aplicações cobriram desde o digital até o físico: artes para redes sociais (feed, carrossel e stories), cartaz de divulgação, banner, backdrop, camiseta, credenciais, copo e sacola.",
-        placeholderHint:
-          "Fotos ou mockups das peças físicas (camiseta, copo, sacola, credencial) e do banner/backdrop montados no evento — isso mostra a identidade saindo da tela pro mundo real. Complementar com 2-3 prints das artes de feed/carrossel/stories.",
+          "As aplicações cobriram desde o digital até o físico: artes para redes sociais (feed, carrossel e stories), cartaz de divulgação, banner, backdrop, camiseta, credenciais, copo e sacola. A camiseta é o exemplo mais direto da identidade fora da tela — a mesma cercadura geométrica e o mesmo amarelo do logotipo, agora estampados sobre o marrom.",
+        galeria: [
+          {
+            src: "/images/festival/camisa.jpg",
+            alt: "Três pessoas sorrindo lado a lado, vestindo a camiseta marrom do festival com o logotipo em amarelo entre duas faixas geométricas.",
+          },
+        ],
+        // A foto do palco ficou de fora: é registro do local, não peça de design —
+        // e é vertical, então seria muito recortada ao lado da camiseta.
+        galeriaAspect: "2000/1459",
       },
       {
         titulo: "Planejamento de Redes Sociais",
         texto:
-          "No trabalho de redes sociais, o planejamento foi dividido em três fases: de julho a novembro, o foco foi informar — apresentar o festival, seu propósito e como funcionaria; de janeiro a março, o conteúdo se voltou para inscrições, datas e divulgação de patrocinadores; em abril, a comunicação foi intensificada com informações práticas do dia a dia do evento, formas de chegar, venda de ingressos e souvenirs.",
-        placeholderHint:
-          "Um print representativo de cada fase (informar / inscrições / prático) — três imagens já contam a evolução da estratégia. Se tiver os números de alcance ou engajamento, esse também é um bom lugar para mencioná-los no texto.",
+          "No trabalho de redes sociais, o planejamento foi dividido em três fases: de julho a novembro, o foco foi informar — apresentar o festival, seu propósito e como funcionaria; de janeiro a março, o conteúdo se voltou para inscrições, datas e divulgação de patrocinadores; em abril, a comunicação foi intensificada com informações práticas do dia a dia do evento, formas de chegar, venda de ingressos e souvenirs. A sequência de anúncios de artistas foi o que sustentou a contagem regressiva até o dia do evento.",
+        // Peças de feed são 4/5 e o story é 9/16: "contain" garante que nenhuma
+        // arte perca a borda geométrica nem a tipografia no recorte.
+        galeriaAspect: "4/5",
+        galeriaFit: "contain",
+        galeria: [
+          {
+            src: "/images/festival/post-regulamento.jpg",
+            alt: "Post de feed anunciando que o regulamento do festival está disponível, com as faixas geométricas no topo e na base.",
+          },
+          {
+            src: "/images/festival/post-pole-cleaners.jpg",
+            alt: "Post de feed com o anúncio da atração Pole Cleaners, aplicando a mesma paleta quente e a moldura geométrica.",
+          },
+          {
+            src: "/images/festival/story-inscricao-confirmada.jpg",
+            alt: "Arte em formato vertical de story confirmando a inscrição e pedindo para reservar a data do festival.",
+          },
+          {
+            src: "/images/festival/post-artista-3.jpg",
+            alt: "Post de artista confirmada: retrato da violinista Maísa Violina com o nome em amarelo, entre as faixas geométricas do festival.",
+          },
+          {
+            src: "/images/festival/post-artista-1.jpg",
+            alt: "Post de artista confirmada, com retrato em destaque e o nome aplicado em amarelo sobre a foto.",
+          },
+          {
+            src: "/images/festival/post-artista-2.jpg",
+            alt: "Post de artista confirmada, seguindo o mesmo padrão de retrato, nome em amarelo e moldura geométrica.",
+          },
+          {
+            src: "/images/festival/post-artista-4.jpg",
+            alt: "Post de artista confirmada, mantendo a consistência visual da série de anúncios.",
+          },
+          {
+            src: "/images/festival/post-artista-5.jpg",
+            alt: "Post de artista confirmada, com a mesma estrutura de retrato e tipografia da série.",
+          },
+          {
+            src: "/images/festival/post-artista-6.jpg",
+            alt: "Post de artista confirmada, encerrando a sequência de anúncios do line-up.",
+          },
+          {
+            src: "/images/festival/post-artista-7.jpg",
+            alt: "Post de artista confirmada, na mesma linguagem visual dos demais anúncios.",
+          },
+          {
+            src: "/images/festival/post-patrocinio-1.jpg",
+            alt: "Post de divulgação do patrocinador Casa Corpo, aplicando a identidade do festival à marca parceira.",
+          },
+          {
+            src: "/images/festival/post-patrocinio-2.jpg",
+            alt: "Segundo post de divulgação do patrocinador Casa Corpo, na mesma linguagem visual.",
+          },
+          {
+            src: "/images/festival/post-agradecimento-gaia.jpg",
+            alt: "Post de agradecimento à patrocinadora Gaia, com a moldura geométrica e a paleta quente do festival.",
+          },
+          {
+            src: "/images/festival/post-agradecimento-vortex.jpg",
+            alt: "Post de agradecimento ao patrocinador Vortex, fechando a série de peças institucionais.",
+          },
+        ],
       },
     ],
     solucao:

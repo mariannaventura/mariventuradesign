@@ -64,6 +64,8 @@ export function InstagramPost({ images, autor, legenda }: InstagramPostProps) {
                 <img
                   src={src}
                   alt={`${autor} — post ${i + 1}`}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
                   className="w-full aspect-[4/5] object-cover"
                 />
               </CarouselItem>

@@ -44,3 +44,6 @@ firebase-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivos originais (PDF, video) fora do deploy
+material-original/
