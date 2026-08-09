@@ -144,7 +144,7 @@ export const PROJETOS: Projeto[] = [
       {
         titulo: "Redes sociais · fase 2 — inscrições e patrocínio",
         texto:
-          "De janeiro a março, o conteúdo se voltou para inscrições, datas e divulgação de patrocinadores. Aqui a identidade passou a ter de acomodar marcas parceiras sem se descaracterizar — cada agradecimento mantém a moldura do festival e abre espaço para a logo de quem apoiou.",
+          "De janeiro a março, o conteúdo se voltou para inscrições, datas e divulgação de patrocinadores. É a fase em que a comunicação passa de apresentar para convocar: a arte precisa dar a informação prática — data, inscrição — sem perder a temperatura da identidade.",
         post: {
           autor: "festivalafrontosas",
           iniciais: "FA",
@@ -165,14 +165,6 @@ export const PROJETOS: Projeto[] = [
             {
               src: "/images/festival/post-patrocinio-2.jpg",
               alt: "Segundo post de divulgação do patrocinador Casa Corpo, na mesma linguagem visual.",
-            },
-            {
-              src: "/images/festival/post-agradecimento-gaia.jpg",
-              alt: "Post de agradecimento à patrocinadora Gaia, com a moldura geométrica e a paleta quente do festival.",
-            },
-            {
-              src: "/images/festival/post-agradecimento-vortex.jpg",
-              alt: "Post de agradecimento ao patrocinador Vortex, fechando a série de peças institucionais.",
             },
           ],
         },
@@ -231,11 +223,33 @@ export const PROJETOS: Projeto[] = [
           ],
         },
       },
+      {
+        titulo: "Redes sociais · fase 4 — agradecimentos",
+        texto:
+          "Passado o evento, a comunicação se voltou para quem viabilizou o festival. Os agradecimentos aos patrocinadores fecham o ciclo editorial e são o teste mais duro da identidade: ela precisa acomodar a marca de terceiros — com cores e formas que não são as do festival — sem se descaracterizar nem apagar quem apoiou.",
+        post: {
+          autor: "festivalafrontosas",
+          iniciais: "FA",
+          subtitulo: "Pós-evento · agradecimentos",
+          legenda:
+            "Nada disso existiria sem quem acreditou. Obrigada a cada patrocinador que caminhou com a gente nessa 1ª edição. 🧡",
+          images: [
+            {
+              src: "/images/festival/post-agradecimento-gaia.jpg",
+              alt: "Post de agradecimento à patrocinadora Gaia, com a moldura geométrica e a paleta quente do festival.",
+            },
+            {
+              src: "/images/festival/post-agradecimento-vortex.jpg",
+              alt: "Post de agradecimento ao patrocinador Vortex, fechando a série de peças institucionais.",
+            },
+          ],
+        },
+      },
     ],
     solucao:
       "O Festival Afrontosas chegou ao seu formato final com uma identidade visual coesa do digital ao físico: das artes de redes sociais até as peças físicas — camiseta, copo, sacola, credenciais, backdrop e banner — todas sustentadas pela mesma paleta e pelo mesmo conceito.",
     impacto:
-      "Foram quase dez meses de comunicação ativa nas redes sociais — da primeira postagem em julho até o dia do evento em abril —, com planejamento editorial estruturado em três fases e produção contínua de conteúdo.",
+      "Foram quase dez meses de comunicação ativa nas redes sociais — da primeira postagem em julho até o dia do evento em abril, mais os agradecimentos que fecharam o ciclo —, com planejamento editorial estruturado em fases e produção contínua de conteúdo.",
     reflexao:
       "Para a próxima edição, quero fazer alguns ajustes visuais para dar mais movimento à identidade.",
   },
