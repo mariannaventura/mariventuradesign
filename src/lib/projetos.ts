@@ -5,6 +5,9 @@
  */
 export type GaleriaItem = string | { src: string; alt: string };
 
+/** Item de um post: imagem ou vídeo. `poster` é o quadro exibido antes do play. */
+export type PostMidia = string | { src: string; alt?: string; video?: boolean; poster?: string };
+
 export type ProcessoItem = {
   titulo: string;
   texto: string;
@@ -16,9 +19,12 @@ export type ProcessoItem = {
   /** "contain" quando a galeria traz peças gráficas que não podem ser recortadas. */
   galeriaFit?: "cover" | "contain";
   post?: {
-    images: string[];
+    images: PostMidia[];
     autor: string;
     legenda: string;
+    iniciais?: string;
+    subtitulo?: string;
+    fit?: "cover" | "contain";
   };
   placeholderHint?: string;
 };
@@ -91,71 +97,139 @@ export const PROJETOS: Projeto[] = [
         galeriaAspect: "2000/1459",
       },
       {
-        titulo: "Planejamento de Redes Sociais",
+        titulo: "Peças impressas e sinalização",
         texto:
-          "No trabalho de redes sociais, o planejamento foi dividido em três fases: de julho a novembro, o foco foi informar — apresentar o festival, seu propósito e como funcionaria; de janeiro a março, o conteúdo se voltou para inscrições, datas e divulgação de patrocinadores; em abril, a comunicação foi intensificada com informações práticas do dia a dia do evento, formas de chegar, venda de ingressos e souvenirs. A sequência de anúncios de artistas foi o que sustentou a contagem regressiva até o dia do evento.",
-        // Peças de feed são 4/5 e o story é 9/16: "contain" garante que nenhuma
-        // arte perca a borda geométrica nem a tipografia no recorte.
-        galeriaAspect: "4/5",
-        galeriaFit: "contain",
+          "Além do digital, a identidade foi para o papel e para o espaço: o cartaz de venda de ingressos, o banner de porta que marcava a entrada e o mapa do palco, usado na produção. Mesmo a peça mais técnica — o mapa, com as medidas úteis da barra e do palco — foi resolvida dentro da paleta, para que nada do evento saísse da linguagem.",
         galeria: [
           {
-            src: "/images/festival/post-regulamento.jpg",
-            alt: "Post de feed anunciando que o regulamento do festival está disponível, com as faixas geométricas no topo e na base.",
+            src: "/images/festival/cartaz-ingressos.jpg",
+            alt: "Cartaz de venda de ingressos da 1ª edição: o logotipo no topo, foto de quatro artistas em pose sobre fundo claro, dois QR codes na faixa preta inferior e as logos dos apoiadores.",
           },
           {
-            src: "/images/festival/post-pole-cleaners.jpg",
-            alt: "Post de feed com o anúncio da atração Pole Cleaners, aplicando a mesma paleta quente e a moldura geométrica.",
+            src: "/images/festival/banner-porta.jpg",
+            alt: "Banner vertical usado na porta do evento, com o logotipo do festival e as faixas de padrão geométrico.",
           },
           {
-            src: "/images/festival/story-inscricao-confirmada.jpg",
-            alt: "Arte em formato vertical de story confirmando a inscrição e pedindo para reservar a data do festival.",
-          },
-          {
-            src: "/images/festival/post-artista-3.jpg",
-            alt: "Post de artista confirmada: retrato da violinista Maísa Violina com o nome em amarelo, entre as faixas geométricas do festival.",
-          },
-          {
-            src: "/images/festival/post-artista-1.jpg",
-            alt: "Post de artista confirmada, com retrato em destaque e o nome aplicado em amarelo sobre a foto.",
-          },
-          {
-            src: "/images/festival/post-artista-2.jpg",
-            alt: "Post de artista confirmada, seguindo o mesmo padrão de retrato, nome em amarelo e moldura geométrica.",
-          },
-          {
-            src: "/images/festival/post-artista-4.jpg",
-            alt: "Post de artista confirmada, mantendo a consistência visual da série de anúncios.",
-          },
-          {
-            src: "/images/festival/post-artista-5.jpg",
-            alt: "Post de artista confirmada, com a mesma estrutura de retrato e tipografia da série.",
-          },
-          {
-            src: "/images/festival/post-artista-6.jpg",
-            alt: "Post de artista confirmada, encerrando a sequência de anúncios do line-up.",
-          },
-          {
-            src: "/images/festival/post-artista-7.jpg",
-            alt: "Post de artista confirmada, na mesma linguagem visual dos demais anúncios.",
-          },
-          {
-            src: "/images/festival/post-patrocinio-1.jpg",
-            alt: "Post de divulgação do patrocinador Casa Corpo, aplicando a identidade do festival à marca parceira.",
-          },
-          {
-            src: "/images/festival/post-patrocinio-2.jpg",
-            alt: "Segundo post de divulgação do patrocinador Casa Corpo, na mesma linguagem visual.",
-          },
-          {
-            src: "/images/festival/post-agradecimento-gaia.jpg",
-            alt: "Post de agradecimento à patrocinadora Gaia, com a moldura geométrica e a paleta quente do festival.",
-          },
-          {
-            src: "/images/festival/post-agradecimento-vortex.jpg",
-            alt: "Post de agradecimento ao patrocinador Vortex, fechando a série de peças institucionais.",
+            src: "/images/festival/mapa-do-palco.jpg",
+            alt: "Mapa do palco em marrom e bege, indicando as medidas de 5 por 3 metros, a posição da barra e a altura útil de 4 metros.",
           },
         ],
+        // Cartaz e banner são verticais; o mapa é horizontal. "contain" evita que
+        // qualquer um deles perca informação no recorte.
+        galeriaAspect: "3/4",
+        galeriaFit: "contain",
+      },
+      {
+        titulo: "Redes sociais · fase 1 — apresentar o festival",
+        texto:
+          "De julho a novembro, o foco foi informar: apresentar o festival, seu propósito e como funcionaria. É a fase em que a identidade ainda estava sendo aprendida pelo público, então cada peça repetia a cercadura geométrica e a paleta para fixar o reconhecimento.",
+        post: {
+          autor: "festivalafrontosas",
+          iniciais: "FA",
+          subtitulo: "Jul — Nov · apresentar",
+          legenda:
+            "O regulamento já está disponível e as atrações começam a ser anunciadas. Um festival feito para celebrar e ocupar espaço. 🔥",
+          images: [
+            {
+              src: "/images/festival/post-regulamento.jpg",
+              alt: "Post de feed anunciando que o regulamento do festival está disponível, com as faixas geométricas no topo e na base.",
+            },
+            {
+              src: "/images/festival/post-pole-cleaners.jpg",
+              alt: "Post de feed com o anúncio da atração Pole Cleaners, aplicando a mesma paleta quente e a moldura geométrica.",
+            },
+          ],
+        },
+      },
+      {
+        titulo: "Redes sociais · fase 2 — inscrições e patrocínio",
+        texto:
+          "De janeiro a março, o conteúdo se voltou para inscrições, datas e divulgação de patrocinadores. Aqui a identidade passou a ter de acomodar marcas parceiras sem se descaracterizar — cada agradecimento mantém a moldura do festival e abre espaço para a logo de quem apoiou.",
+        post: {
+          autor: "festivalafrontosas",
+          iniciais: "FA",
+          subtitulo: "Jan — Mar · inscrições",
+          legenda:
+            "Inscrição confirmada! Reserve a data e venha com a gente. Obrigada a quem patrocina e torna esse festival possível. 🧡",
+          // O story é 9/16 e os posts são 4/5: "contain" preserva as duas peças.
+          fit: "contain",
+          images: [
+            {
+              src: "/images/festival/story-inscricao-confirmada.jpg",
+              alt: "Arte vertical de story confirmando a inscrição e pedindo para reservar a data do festival.",
+            },
+            {
+              src: "/images/festival/post-patrocinio-1.jpg",
+              alt: "Post de divulgação do patrocinador Casa Corpo, aplicando a identidade do festival à marca parceira.",
+            },
+            {
+              src: "/images/festival/post-patrocinio-2.jpg",
+              alt: "Segundo post de divulgação do patrocinador Casa Corpo, na mesma linguagem visual.",
+            },
+            {
+              src: "/images/festival/post-agradecimento-gaia.jpg",
+              alt: "Post de agradecimento à patrocinadora Gaia, com a moldura geométrica e a paleta quente do festival.",
+            },
+            {
+              src: "/images/festival/post-agradecimento-vortex.jpg",
+              alt: "Post de agradecimento ao patrocinador Vortex, fechando a série de peças institucionais.",
+            },
+          ],
+        },
+      },
+      {
+        titulo: "Redes sociais · fase 3 — line-up e reta final",
+        texto:
+          "Em abril a comunicação foi intensificada: informações práticas do dia a dia, formas de chegar, venda de ingressos e souvenirs. A sequência de anúncios de artistas foi o que sustentou a contagem regressiva — sete peças no mesmo gabarito, trocando só o retrato e o nome, de modo que o público reconhecesse um anúncio do festival antes mesmo de ler.",
+        post: {
+          autor: "festivalafrontosas",
+          iniciais: "FA",
+          subtitulo: "Abril · line-up",
+          legenda:
+            "Artista confirmada! A contagem regressiva começou — arrasta pro lado pra conhecer quem sobe no palco da 1ª edição. ✨",
+          images: [
+            {
+              src: "/images/festival/post-artista-3.jpg",
+              alt: "Post de artista confirmada: retrato da violinista Maísa Violina com o nome em amarelo, entre as faixas geométricas do festival.",
+            },
+            {
+              src: "/images/festival/post-artista-1.jpg",
+              alt: "Post de artista confirmada, com retrato em destaque e o nome aplicado em amarelo sobre a foto.",
+            },
+            {
+              src: "/images/festival/post-artista-2.jpg",
+              alt: "Post de artista confirmada, seguindo o mesmo padrão de retrato, nome em amarelo e moldura geométrica.",
+            },
+            {
+              src: "/images/festival/post-artista-4.jpg",
+              alt: "Post de artista confirmada, mantendo a consistência visual da série de anúncios.",
+            },
+            {
+              src: "/images/festival/post-artista-5.jpg",
+              alt: "Post de artista confirmada, com a mesma estrutura de retrato e tipografia da série.",
+            },
+            {
+              src: "/images/festival/post-artista-6.jpg",
+              alt: "Post de artista confirmada, encerrando a sequência de anúncios do line-up.",
+            },
+            {
+              src: "/images/festival/post-artista-7.jpg",
+              alt: "Post de artista confirmada, na mesma linguagem visual dos demais anúncios.",
+            },
+            {
+              src: "/images/festival/video-jaguar.mp4",
+              video: true,
+              poster: "/images/festival/video-jaguar-poster.jpg",
+              alt: "Vídeo de divulgação da apresentação especial Jaguar.",
+            },
+            {
+              src: "/images/festival/video-musa.mp4",
+              video: true,
+              poster: "/images/festival/video-musa-poster.jpg",
+              alt: "Vídeo de divulgação da apresentação especial Musa.",
+            },
+          ],
+        },
       },
     ],
     solucao:

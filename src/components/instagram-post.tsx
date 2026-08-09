@@ -9,21 +9,44 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import type { PostMidia } from "@/lib/projetos";
 
 type InstagramPostProps = {
-  images: string[];
+  images: PostMidia[];
   autor: string;
   legenda: string;
+  /** Iniciais do avatar. Sem isto, deriva das duas primeiras letras do autor. */
+  iniciais?: string;
+  /** Linha menor sob o nome — boa para o período ou o tipo de conteúdo. */
+  subtitulo?: string;
+  /** "contain" quando as peças não têm todas a mesma proporção. */
+  fit?: "cover" | "contain";
 };
 
 const LEGENDA_TRUNCATE_LENGTH = 100;
 
-export function InstagramPost({ images, autor, legenda }: InstagramPostProps) {
+function normalizar(item: PostMidia, autor: string, i: number) {
+  if (typeof item === "string") return { src: item, alt: `${autor} — post ${i + 1}`, video: false, poster: undefined };
+  return { src: item.src, alt: item.alt ?? `${autor} — post ${i + 1}`, video: !!item.video, poster: item.poster };
+}
+
+export function InstagramPost({
+  images,
+  autor,
+  legenda,
+  iniciais,
+  subtitulo = "Turma online",
+  fit = "cover",
+}: InstagramPostProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [selected, setSelected] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
   const [legendaExpandida, setLegendaExpandida] = useState(false);
+
+  const midias = images.map((item, i) => normalizar(item, autor, i));
+  const avatar = iniciais ?? autor.replace(/[^A-Za-zÀ-ÿ]/g, "").slice(0, 2).toUpperCase();
+  const ajuste = fit === "contain" ? "object-contain bg-muted" : "object-cover";
 
   useEffect(() => {
     if (!api) return;
@@ -47,27 +70,41 @@ export function InstagramPost({ images, autor, legenda }: InstagramPostProps) {
     <div className="max-w-sm mx-auto rounded-2xl border border-border bg-card shadow-lg overflow-hidden">
       <div className="flex items-center gap-3 px-4 py-3">
         <div className="h-9 w-9 shrink-0 rounded-full bg-gradient-to-br from-accent to-sky flex items-center justify-center text-xs font-semibold text-white">
-          LR
+          {avatar}
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium leading-tight truncate">{autor}</p>
-          <p className="text-xs text-muted-foreground leading-tight">Turma online</p>
+          <p className="text-xs text-muted-foreground leading-tight">{subtitulo}</p>
         </div>
-        <MoreHorizontal className="w-5 h-5 text-muted-foreground shrink-0" />
+        <MoreHorizontal className="w-5 h-5 text-muted-foreground shrink-0" aria-hidden />
       </div>
 
       <div className="relative group/carousel">
         <Carousel setApi={setApi}>
           <CarouselContent className="ml-0">
-            {images.map((src, i) => (
-              <CarouselItem key={src} className="pl-0">
-                <img
-                  src={src}
-                  alt={`${autor} — post ${i + 1}`}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  decoding="async"
-                  className="w-full aspect-[4/5] object-cover"
-                />
+            {midias.map((m, i) => (
+              <CarouselItem key={m.src} className="pl-0">
+                {m.video ? (
+                  <video
+                    src={m.src}
+                    poster={m.poster}
+                    controls
+                    playsInline
+                    // Só os metadados na abertura: o vídeo em si baixa quando a
+                    // pessoa aperta play.
+                    preload="metadata"
+                    aria-label={m.alt}
+                    className={`w-full aspect-[4/5] bg-black ${fit === "contain" ? "object-contain" : "object-cover"}`}
+                  />
+                ) : (
+                  <img
+                    src={m.src}
+                    alt={m.alt}
+                    loading={i === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    className={`w-full aspect-[4/5] ${ajuste}`}
+                  />
+                )}
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -78,7 +115,7 @@ export function InstagramPost({ images, autor, legenda }: InstagramPostProps) {
             type="button"
             onClick={() => api?.scrollPrev()}
             aria-label="Imagem anterior"
-            className="absolute left-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full bg-black/30 text-white opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover/carousel:opacity-100 hover:bg-black/45"
+            className="absolute left-2 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-opacity duration-200 hover:bg-black/60 md:opacity-0 md:group-hover/carousel:opacity-100"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -88,31 +125,35 @@ export function InstagramPost({ images, autor, legenda }: InstagramPostProps) {
             type="button"
             onClick={() => api?.scrollNext()}
             aria-label="Próxima imagem"
-            className="absolute right-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full bg-black/30 text-white opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover/carousel:opacity-100 hover:bg-black/45"
+            className="absolute right-2 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-opacity duration-200 hover:bg-black/60 md:opacity-0 md:group-hover/carousel:opacity-100"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
         )}
       </div>
 
-      {images.length > 1 && (
-        <div className="flex justify-center gap-1.5 pt-3">
-          {images.map((_, i) => (
+      {midias.length > 1 && (
+        <div className="flex justify-center gap-1 pt-2">
+          {midias.map((m, i) => (
             <button
-              key={i}
+              key={m.src}
               type="button"
               onClick={() => api?.scrollTo(i)}
-              aria-label={`Ir para imagem ${i + 1}`}
-              aria-current={i === selected}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === selected ? "w-4 bg-accent" : "w-1.5 bg-border hover:bg-muted-foreground/40"
-              }`}
-            />
+              aria-label={`Ir para item ${i + 1} de ${midias.length}`}
+              {...(i === selected ? { "aria-current": true as const } : {})}
+              className="flex h-6 w-5 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring"
+            >
+              <span
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === selected ? "w-4 bg-accent" : "w-1.5 bg-border"
+                }`}
+              />
+            </button>
           ))}
         </div>
       )}
 
-      <div className="flex items-center gap-4 px-4 pt-3 text-foreground">
+      <div className="flex items-center gap-4 px-4 pt-2 text-foreground" aria-hidden>
         <Heart className="w-6 h-6" />
         <MessageCircle className="w-6 h-6" />
         <Send className="w-6 h-6" />

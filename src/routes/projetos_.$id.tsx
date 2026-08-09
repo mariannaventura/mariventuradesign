@@ -194,6 +194,9 @@ function ProjetoDetalhe() {
                           images={item.post.images}
                           autor={item.post.autor}
                           legenda={item.post.legenda}
+                          iniciais={item.post.iniciais}
+                          subtitulo={item.post.subtitulo}
+                          fit={item.post.fit}
                         />
                       )}
                       {/* Lembrete de produção, só em desenvolvimento. Já foi ao ar como
