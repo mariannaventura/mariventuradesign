@@ -73,13 +73,17 @@ function Index() {
 
   return (
     <>
-      {/* O card não encosta nas bordas nem preenche a altura toda: a faixa de página
-          que sobra embaixo é o que avisa que a página continua. */}
-      <div className="px-3 pb-6 sm:px-5 lg:px-6">
+      {/* Encosta no topo e nas laterais, flutua só embaixo: os cantos arredondados e a
+          sombra ficam na base, e a faixa de página que sobra avisa que há mais adiante.
+          O -mt-16 anula o respiro que o layout reserva para a barra fixa, para que o
+          degradê passe por baixo dela — é o que devolve a barra branca à home.
+          O respiro interno é menor em tela baixa: com os valores do desktop o conteúdo
+          empurrava o card além da altura pedida e engolia a faixa que sobra embaixo. */}
+      <div className="pb-6">
         <motion.section
           onMouseMove={handleMove}
           style={{ background, backgroundBlendMode: "overlay" }}
-          className="relative flex min-h-[calc(100svh-8.5rem)] flex-col items-center justify-center overflow-hidden rounded-3xl px-6 pb-24 pt-14 shadow-2xl shadow-[#3B0373]/30"
+          className="relative -mt-16 flex min-h-[calc(100svh-4.5rem)] flex-col items-center justify-center overflow-hidden rounded-b-3xl px-6 pb-20 pt-24 shadow-2xl shadow-[#3B0373]/30 sm:pb-24 sm:pt-28"
         >
           {/* Marca na horizontal: símbolo à esquerda, assinatura ao lado — o mesmo
               arranjo da variante logo-horizontal. O símbolo é decorativo (alt vazio):
@@ -100,7 +104,7 @@ function Index() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.3} className="mt-10 w-full">
+          <FadeIn delay={0.3} className="mt-7 w-full sm:mt-10">
             <h1
               className="mx-auto max-w-[min(1080px,100%)] text-center font-display font-semibold leading-[1.08] tracking-[-0.02em] text-white"
               style={{ fontSize: "clamp(1.85rem, 4.6vw, 3.25rem)" }}
@@ -111,13 +115,13 @@ function Index() {
               <span className="md:whitespace-nowrap">Identidade visual ousada,</span>{" "}
               <span className="md:whitespace-nowrap">feita com cuidado.</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-[48ch] text-center text-base text-white sm:text-lg">
+            <p className="mx-auto mt-4 max-w-[48ch] sm:mt-5 text-center text-base text-white sm:text-lg">
               Identidade visual, campanhas e conteúdo digital para marcas e eventos que
               precisam ser vistos.
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.5} className="mt-9 w-full">
+          <FadeIn delay={0.5} className="mt-7 w-full sm:mt-9">
             {/* Empilha no celular em vez de forçar uma linha de 343px que não cabe. */}
             <div className="mx-auto flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
               {/* Contato é o CTA primário declarado no PRODUCT.md; era ele quem estava

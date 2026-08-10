@@ -64,11 +64,9 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  // A home tinha o degradê sangrando até o topo, então a barra usava texto branco.
-  // Agora o degradê é um card com margem e a barra fica sobre o fundo claro da
-  // página, como em todas as outras rotas — nenhuma precisa mais do tratamento
-  // escuro. A lista fica aqui caso volte a existir uma rota de fundo escuro.
-  const darkBgRoutes: string[] = [];
+  // Rotas com fundo escuro (degrade) usam texto branco + hover azul claro.
+  // Demais rotas usam texto preto + hover roxo primário.
+  const darkBgRoutes = ["/"];
   const isDarkBg = darkBgRoutes.includes(pathname);
 
   const baseText = isDarkBg ? "text-white" : "text-black";
