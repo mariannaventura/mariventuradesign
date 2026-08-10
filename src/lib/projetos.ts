@@ -54,11 +54,12 @@ export const PROJETOS: Projeto[] = [
     titulo: "Festival Afrontosas",
     cliente: "Coletivo Afrontosas",
     tags: ["Branding", "Identidade Visual", "Digital"],
-    // A capa era a folha de rosto — um documento, não a peça. A camiseta vestida
-    // mostra a identidade funcionando no mundo real, que é o argumento do projeto.
-    capa: "/images/festival/camisa.jpg",
+    // A capa era a folha de rosto — um documento, não a peça. O grupo vestindo a
+    // camiseta mostra a identidade funcionando no mundo real e no coletivo, que é
+    // exatamente o que o festival é.
+    capa: "/images/festival/grupo.jpg",
     capaAlt:
-      "Três pessoas sorrindo lado a lado, vestindo a camiseta marrom do Festival Afrontosas com o logotipo em amarelo entre duas faixas de padrão geométrico.",
+      "Oito mulheres reunidas e sorrindo num pátio de parede coral com painel de folhagens pintado ao fundo, todas vestindo a camiseta marrom do Festival Afrontosas com o logotipo em amarelo.",
     contexto:
       "O Festival Afrontosas nasceu como um braço cultural do Coletivo Afrontosas — um coletivo que existe para afrontar, questionar e ocupar espaços. O festival carrega esse mesmo espírito: é um evento cultural voltado para pessoas pretas, pardas e indígenas, realizado com financiamento público e pensado para celebrar e amplificar essas existências.",
     problema:
