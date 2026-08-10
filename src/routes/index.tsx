@@ -45,10 +45,11 @@ function Index() {
       ),
       conic-gradient(from ${180 - y * 1.8 - d * 0.6}deg at ${100 - x}% ${100 - y}%,
         #3b0373 0deg,
-        #180037 90deg,
-        #a671d9 180deg,
-        #3b0373 270deg,
-        #6c3da4 360deg
+        #180037 72deg,
+        #a671d9 144deg,
+        #3b0373 216deg,
+        #6c3da4 288deg,
+        #3b0373 360deg
       )
     `;
   });
