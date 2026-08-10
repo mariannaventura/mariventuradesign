@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 export function FadeIn({
@@ -12,11 +12,14 @@ export function FadeIn({
   y?: number;
   className?: string;
 }) {
+  // Sem isto o conteúdo entra deslizando para quem pediu menos movimento no sistema
+  // — e, num site pré-gerado, ele nasce invisível até o JavaScript rodar.
+  const reduzir = useReducedMotion();
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={reduzir ? false : { opacity: 0, y }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reduzir ? 0 : 0.6, delay: reduzir ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
